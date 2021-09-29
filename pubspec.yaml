@@ -1,0 +1,71 @@
+name: need_flutter_app
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  geolocator: ^7.6.0
+  permission_handler: ^8.1.6
+  flutter_screenutil: ^5.0.0+2
+  dio: ^4.0.0
+  get: ^4.3.8
+  meta: ^1.7.0
+  intl: ^0.17.0
+  connectivity_wrapper: ^1.0.6
+  fluttertoast: ^8.0.8
+  connectivity: ^3.0.6
+  cupertino_icons: ^1.0.2
+  after_layout: ^1.1.0
+  shared_preferences: ^2.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^5.0.0
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+  fonts:
+    - family: Sora-Bold
+      fonts:
+        - asset: fonts/Sora-Bold.ttf
+
+    - family: Sora-ExtraBold
+      fonts:
+        - asset: fonts/Sora-ExtraBold.ttf
+
+    - family: Sora-ExtraLight
+      fonts:
+        - asset: fonts/Sora-ExtraLight.ttf
+
+    - family: Sora-Light
+      fonts:
+        - asset: fonts/Sora-Light.ttf
+
+    - family: Sora-Medium
+      fonts:
+        - asset: fonts/Sora-Medium.ttf
+
+    - family: Sora-Regular
+      fonts:
+        - asset: fonts/Sora-Regular.ttf
+
+    - family: Sora-SemiBoldy
+      fonts:
+        - asset: fonts/Sora-SemiBold.ttf
+
+    - family: Sora-Thin
+      fonts:
+        - asset: fonts/Sora-Thin.ttf
