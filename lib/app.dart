@@ -26,7 +26,6 @@ class App {
         fallbackLocale: Locale('en', 'US'),
         home: SplashScreen(),
         theme: appTheme,
-
       ),
     ));
   }

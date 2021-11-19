@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:need_flutter_app/res/strings.dart';
 import 'package:need_flutter_app/screens/access_screen/widgets/access_item_widget.dart';
 import 'package:need_flutter_app/screens/dashboard_screen/dashboard_screen.dart';
+import 'package:need_flutter_app/screens/login_and_registration%20_screen/login_screen.dart';
 import 'package:need_flutter_app/utils/assets.dart';
 import 'package:need_flutter_app/utils/common.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
@@ -48,7 +49,7 @@ class AccessScreen extends StatelessWidget {
               width: double.infinity,
               child: AppPrimaryButton(
                 text: Strings.allowAccess,
-                onPressed: () =>_checkPermission,
+                onPressed: () =>_checkPermission(),
               ),
             ),
             C20(),
@@ -90,8 +91,8 @@ class AccessScreen extends StatelessWidget {
       }
     });
     if (allGranted) {
-      Common.toast("no");
-      Get.offAll(() => DashBoardScreen());
+      //Common.toast("no");
+      Get.offAll(() => LoginScreen());
     } else {
       Common.toast(Strings.permissionsRequired);
     }

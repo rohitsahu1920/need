@@ -23,7 +23,7 @@ class EnglishLanguage {
     "locationServiceDisable": "Location Services are no enabled",
 
     "instanceError": "Please enter your GoDeskless Instance-id",
-    "poweredBy": "Powered By goDeskless",
+    "poweredBy": "We need this",
     "weAreSorry": "We are sorry",
     "getStarted": "Get Started",
     "distanceTravelled": "Distance Travelled",

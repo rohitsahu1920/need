@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:need_flutter_app/mixins/after_layout.dart';
+import 'package:need_flutter_app/res/app_constants.dart';
 import 'package:need_flutter_app/utils/assets.dart';
 import 'package:need_flutter_app/utils/shared_pref_manager/sp_keys.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
@@ -13,6 +14,7 @@ import '../app.dart';
 import 'access_screen/access_screen.dart';
 import 'dashboard_screen/dashboard_screen.dart';
 import 'intro_screens/intro_screen.dart';
+import 'login_and_registration _screen/login_screen.dart';
 
 ///Created by Rohit Sahu on 17-09-2021
 
@@ -27,6 +29,7 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
 
   @override
   Future<void> afterFirstLayout(BuildContext context) async {
+    await _setupDependency();
     _startApp();
   }
 
@@ -42,6 +45,19 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
     });
   }
 
+  _setupDependency() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    Get.put(preferences);
+
+    //set language
+
+    var savedLanguage = preferences.getString(SPKeys.selectedLanguage.value);
+    if (savedLanguage != null) {
+      var l = supportedLanguages.firstWhere((e) => e.title == savedLanguage);
+      Get.updateLocale(l.locale);
+    }
+  }
+
   _checkForPermissions() async {
 
     bool storageStatus = await Permission.storage.status.isGranted;
@@ -49,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
 
     if (storageStatus &&
         location) {
-      Get.offAll(() => DashBoardScreen());
+      Get.offAll(() => LoginScreen());
     } else {
       Get.offAll(() => AccessScreen());
     }

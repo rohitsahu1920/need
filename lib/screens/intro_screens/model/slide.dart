@@ -11,26 +11,26 @@ class SlideModel {
 final slideList = [
   SlideModel(
     imageUrl: Assets.slideImage1,
-    title: "Assign & Track Task Status",
+    title: "Donate Food",
     description:
-        "Every process and every action occurs in the palm of your hand.",
+        "On average women are likely to need between 1,600 and 2,400 calories a day, and men from 2,000 to 3,000.",
   ),
   SlideModel(
     imageUrl: Assets.slideImage2,
-    title: "Track Location & Duration",
+    title: "Home Sweet home",
     description:
-        "Every process and every action occurs in the palm of your hand.",
+        "Home is not a place…it’s a feeling.",
   ),
   SlideModel(
     imageUrl: Assets.slideImage3,
-    title: "Video Calling & Text Chat",
+    title: "Just Clothing",
     description:
-        "Every process and every action occurs in the palm of your hand.",
+        "Clothing can insulate against cold or hot conditions, and it can provide a hygienic barrier, keeping infectious and toxic materials away from the body.",
   ),
   SlideModel(
     imageUrl: Assets.slideImage4,
-    title: "Manage & Assign task easily",
+    title: "Medicine",
     description:
-        "Every process and every action occurs in the palm of your hand.",
+    "There's nothing more important than our good health - that's our principal capital asset.",
   ),
 ];
