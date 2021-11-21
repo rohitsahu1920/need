@@ -7,6 +7,6 @@ class AppUrl {
     return "https://localhost:44362/api/";
   }
 
-  static String get visitList => "login/login";
+  static String get login => "login/login";
 
 }

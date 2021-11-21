@@ -63,7 +63,7 @@ class EnglishLanguage {
 
     "dummyText": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr",
 
-    "appName": "TrackHelp",
+    "appName": "Need",
     "logout": "Log Out",
 
     "eula": "EULA",

@@ -4,30 +4,26 @@ import 'package:need_flutter_app/res/app_colors.dart';
 
 class AppTextField extends StatelessWidget {
   final String? hintText;
-  final String? initialValue;
   final bool? passwordVisible;
   final Widget? suffixIcon;
-  final Widget? prefixIcon;
   final TextInputType? keyboardType;
-  final FormFieldValidator<String>? validator;
-  final TextEditingController? controller;
+  final FormFieldValidator<String> validator;
+  final TextEditingController controller;
   final int? maxLines;
   final bool? enabled;
   final int? maxLength;
 
   const AppTextField({
     Key? key,
-    this.keyboardType = TextInputType.text,
-    this.hintText = "",
-    this.controller,
+    required this.controller,
+    this.hintText,
     this.passwordVisible,
     this.suffixIcon,
-    this.initialValue = "",
-    this.validator,
-    this.prefixIcon ,
-    this.maxLines = 1,
-    this.enabled = true,
-    this.maxLength = 100,
+    this.keyboardType,
+    required this.validator,
+    this.maxLines,
+    this.enabled,
+    this.maxLength
   }) : super(key: key);
 
   @override
@@ -38,9 +34,8 @@ class AppTextField extends StatelessWidget {
       maxLines: maxLines,
       validator: validator,
       controller: controller,
-      keyboardType: keyboardType,
-      obscureText: !passwordVisible!,
-      initialValue: initialValue,
+      keyboardType: keyboardType != null ? keyboardType : TextInputType.text,
+      obscureText: passwordVisible ?? false,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
@@ -55,7 +50,6 @@ class AppTextField extends StatelessWidget {
         hintText: hintText,
         fillColor: AppColors.greyLight,
         suffixIcon: suffixIcon,
-        prefixIcon: prefixIcon,
       ),
     );
   }

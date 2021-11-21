@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:need_flutter_app/mixins/after_layout.dart';
+import 'package:need_flutter_app/network/api_client.dart';
 import 'package:need_flutter_app/res/app_constants.dart';
 import 'package:need_flutter_app/utils/assets.dart';
+import 'package:need_flutter_app/utils/auth/auth_manager.dart';
 import 'package:need_flutter_app/utils/shared_pref_manager/sp_keys.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -12,7 +14,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app.dart';
 import 'access_screen/access_screen.dart';
-import 'dashboard_screen/dashboard_screen.dart';
 import 'intro_screens/intro_screen.dart';
 import 'login_and_registration _screen/login_screen.dart';
 
@@ -48,6 +49,8 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
   _setupDependency() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     Get.put(preferences);
+    Get.put(APIClient());
+    Get.put(AuthManager());
 
     //set language
 

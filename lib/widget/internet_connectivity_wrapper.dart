@@ -5,7 +5,7 @@ import 'package:need_flutter_app/res/strings.dart';
 
 
 class InternetConnectivityWrapper extends StatelessWidget {
-  final Widget? child;
+  final Widget child;
   final bool isShowRestart;
 
   const InternetConnectivityWrapper({
@@ -22,7 +22,7 @@ class InternetConnectivityWrapper extends StatelessWidget {
         errorMessage: Strings.noInternetMsg,
         isShowRestart: isShowRestart,
       ),
-      child: child as List<Widget>,
+      child: child
     );
   }
 }

@@ -8,8 +8,8 @@ AppBar appBarCustom({
   Color backgroundColor = Colors.white,
   Color color = Colors.white,
   Color buttonColor = Colors.white,
-  required Function onBackTap,
-  required List<Widget> actions,
+  Function? onBackTap,
+  List<Widget>? actions,
 }) {
   return AppBar(
     backgroundColor: backgroundColor,
@@ -25,13 +25,13 @@ AppBar appBarCustom({
 
 class AppBackButton extends StatelessWidget {
   final EdgeInsetsGeometry padding;
-  final Function onTap;
+  final Function? onTap;
   final Color color;
 
   const AppBackButton({
     Key? key,
     required this.padding,
-    required this.onTap,
+    this.onTap,
     required this.color,
   }) : super(key: key);
 
@@ -44,7 +44,7 @@ class AppBackButton extends StatelessWidget {
         color: color,
         size: Sizes.s20,
       ),
-      onPressed: onTap()
+      onPressed: onTap!()
     );
   }
 }

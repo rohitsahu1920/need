@@ -7,6 +7,7 @@ import 'package:need_flutter_app/utils/methods.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:need_flutter_app/utils/textstyles.dart';
 import 'package:need_flutter_app/utils/ui_helper.dart';
+import 'package:need_flutter_app/utils/validator/validator.dart';
 import 'package:need_flutter_app/widget/app_primary_button.dart';
 import 'package:need_flutter_app/widget/app_text_field.dart';
 import 'package:need_flutter_app/widget/custom_appbar.dart';
@@ -30,8 +31,6 @@ class LoginScreen extends StatelessWidget {
     return InternetConnectivityWrapper(
       child: Scaffold(
         appBar: appBarCustom(
-          onBackTap: onBackTab,
-          color: Colors.black,
           title: Strings.appName,
           textStyle: TextStyles.appBarBold,
           actions: [
@@ -57,10 +56,11 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           AppTextField(
                             controller: _loginController.emailTextController,
-                            hintText: Strings.emailOrPhoneNumber,
-                            validator: (text) {
-                              if (text == null || text.isEmpty) {
-                                return 'Text is empty';
+                            validator: (value) {
+                              if (value!.isEmpty ||
+                                  !RegExp("${Validator.emailPattern}")
+                                      .hasMatch(value)) {
+                                return 'Enter a valid email!';
                               }
                               return null;
                             },
@@ -72,23 +72,11 @@ class LoginScreen extends StatelessWidget {
                               return AppTextField(
                                 controller:
                                 _loginController.passwordTextController,
-                                hintText: Strings.password,
                                 passwordVisible: controller.passwordVisible,
-                                validator: (text) {
-                                  if (text == null || text.isEmpty) {
-                                    return 'Text is empty';
-                                  }
+                                validator: (value) {
+                                  if (value!.isEmpty) return Strings.passValidation;
                                   return null;
                                 },
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    controller.passwordVisible
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.black,
-                                  ),
-                                  onPressed: controller.toggleVisible,
-                                ),
                               );
                             },
                           ),
@@ -123,12 +111,6 @@ class LoginScreen extends StatelessWidget {
                                 },
                               ),
                               C30(),
-                              GestureDetector(
-                                child: Text(Strings.loginWithOtp),
-                                onTap: () {
-                                  //Get.to(() => LoginWithPhoneScreen());
-                                },
-                              ),
                             ],
                           ),
                         ],
