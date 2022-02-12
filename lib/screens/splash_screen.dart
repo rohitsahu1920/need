@@ -14,8 +14,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app.dart';
 import 'access_screen/access_screen.dart';
+import 'dashboard_screen/dashboard_screen.dart';
 import 'intro_screens/intro_screen.dart';
-import 'login_and_registration _screen/login_screen.dart';
 
 ///Created by Rohit Sahu on 17-09-2021
 
@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
 
     if (storageStatus &&
         location) {
-      Get.offAll(() => LoginScreen());
+      Get.offAll(() => DashBoardScreen());
     } else {
       Get.offAll(() => AccessScreen());
     }

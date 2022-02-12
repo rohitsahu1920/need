@@ -8,11 +8,11 @@ import 'package:need_flutter_app/utils/picker_handler.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:need_flutter_app/utils/textstyles.dart';
 import 'package:need_flutter_app/utils/ui_helper.dart';
+import 'package:need_flutter_app/widget/app_dropdown_fields.dart';
 import 'package:need_flutter_app/widget/app_error_widget.dart';
 import 'package:need_flutter_app/widget/app_primary_button.dart';
 import 'package:need_flutter_app/widget/app_text_field.dart';
 import 'package:need_flutter_app/widget/custom_appbar.dart';
-
 import 'controller/add_need_controller.dart';
 
 class AddNeedScreen extends StatelessWidget {
@@ -81,7 +81,6 @@ class AddNeedScreen extends StatelessWidget {
                     imagePath: _addNeedController.imageThree.value,
                   ),
                 ),
-
               ],
             ),
             Padding(
@@ -90,7 +89,10 @@ class AddNeedScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   AppTextField(
-                    prefixIcon: Icon(Icons.title, color: Colors.black,),
+                    prefixIcon: Icon(
+                      Icons.title,
+                      color: Colors.black,
+                    ),
                     hintText: Strings.addNeedTitle,
                     controller: _addNeedController.title,
                     validator: (value) {
@@ -104,7 +106,10 @@ class AddNeedScreen extends StatelessWidget {
                   C10(),
                   AppTextField(
                     maxLength: 100,
-                    prefixIcon: Icon(Icons.description, color: Colors.black,),
+                    prefixIcon: Icon(
+                      Icons.description,
+                      color: Colors.black,
+                    ),
                     hintText: Strings.addNeedDesc,
                     controller: _addNeedController.description,
                     validator: (value) {
@@ -116,48 +121,45 @@ class AddNeedScreen extends StatelessWidget {
                     keyboardType: TextInputType.text,
                   ),
                   C10(),
-                  DropdownButton<String>(
-                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (value) {},
+
+                  AppDropdownButtonField(
+                    items: _addNeedController.dropdownItems,
+                    onChange: (value){
+                      _addNeedController.setCurrentSelectedValue(value);
+                    },
+                    value: _addNeedController.dropdownItems[0],
                   ),
                   C10(),
-                  C10(),
-                  GestureDetector(
-                    child: Text(
-                      Strings.forgotPass,
-                      textAlign: TextAlign.end,
-                    ),
-                    onTap: () {
-                      //Get.to(() => ResetPasswordStartScreen());
+                  AppDropdownButtonField(
+                    items: _addNeedController.dropdownItems,
+                    onChange: (value){
+                      _addNeedController.setCurrentSelectedValue(value);
                     },
+                    value: _addNeedController.dropdownItems[0],
+                  ),
+                  C10(),
+                  AppTextField(
+                    prefixIcon: Icon(
+                      Icons.phone_android,
+                      color: Colors.black,
+                    ),
+                    hintText: Strings.addNeedTitle,
+                    controller: _addNeedController.title,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return Strings.addNeedTitleValidation;
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.text,
                   ),
                   C10(),
                   SizedBox(
                     width: double.infinity,
                     child: AppPrimaryButton(
-                      text: Strings.signIn,
+                      text: Strings.submit,
                       onPressed: (){},
                     ),
-                  ),
-                  C10(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        child: Text(
-                          Strings.newUserActivate,
-                        ),
-                        onTap: () {
-                          //Get.to(() => ActivateUserScreen());
-                        },
-                      ),
-                      C30(),
-                    ],
                   ),
                 ],
               ),

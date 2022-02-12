@@ -2,7 +2,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:need_flutter_app/models/models.dart';
 import 'package:need_flutter_app/res/strings.dart';
 
 class AddNeedController extends GetxController{
@@ -17,13 +16,23 @@ class AddNeedController extends GetxController{
   TextEditingController addOne = TextEditingController();
   TextEditingController addTwo = TextEditingController();
 
-  static final List<ListItem> dropdownItemsBusinessType = [
-    ListItem(1, "Pharmacy"),
-    ListItem(2, "Diagnostic Center"),
-    ListItem(3, "Hospital"),
-    ListItem(2, "Gymnasiums"),
-    ListItem(3, "Others"),
+  List<String> dropdownItems = [
+    "Food",
+    "Transport",
+    "Personal",
+    "Shopping",
+    "Medical",
+    "Rent",
+    "Movie",
+    "Salary"
   ];
+
+
+  var currentSelectedValue = "Select Value";
+  setCurrentSelectedValue(String value){
+    currentSelectedValue = value;
+    update();
+  }
 
   var imageOne = "".obs;
   setImageOne(String value){

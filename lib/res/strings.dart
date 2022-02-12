@@ -47,6 +47,8 @@ class Strings {
   static String get selectThirdImageTitle => 'selectThirdImageTitle'.tr;
   static String get addNeedTitle => 'addNeedTitle'.tr;
   static String get addNeedDesc => 'addNeedDesc'.tr;
+  static String get mobileNumber => 'mobileNumber'.tr;
+  static String get submit => 'submit'.tr;
 
   //Validation
   static String get addNeedTitleValidation => 'addNeedTitleValidation'.tr;

@@ -43,5 +43,7 @@ class EnglishLanguage {
     "addNeed": "Add Need",
     "addNeedTitle": "Title",
     "addNeedDesc": "Description",
+    "mobileNumber": "Mobile number",
+    "submit": "Submit",
   };
 }

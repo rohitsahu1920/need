@@ -8,7 +8,6 @@ import 'package:need_flutter_app/screens/show_all_screens/see_all_screen.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:need_flutter_app/utils/textstyles.dart';
 import 'package:need_flutter_app/widget/appbar_without_back.dart';
-import 'package:need_flutter_app/widget/custom_appbar.dart';
 
 ///Created by Rohit Sahu on 29-09-2021
 
