@@ -4,13 +4,11 @@ import 'package:get/get.dart';
 import 'package:need_flutter_app/dialogs/loading_dialog.dart';
 import 'package:need_flutter_app/models/login_response.dart';
 import 'package:need_flutter_app/repository/login_repository.dart';
-import 'package:need_flutter_app/res/api_keys.dart';
 import 'package:need_flutter_app/res/strings.dart';
 import 'package:need_flutter_app/screens/dashboard_screen/dashboard_screen.dart';
 import 'package:need_flutter_app/utils/auth/auth_manager.dart';
 import 'package:need_flutter_app/utils/common.dart';
 import 'package:need_flutter_app/utils/methods.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../../app.dart';
 
@@ -63,7 +61,7 @@ class LoginController extends GetxController {
       }
     } on DioError catch (e) {
       Get.back();
-      //Common.toast(e.response!.data["Dio Error"]);
+      Common.toast(e.response!.data["Dio Error"]);
     } catch (e) {
       Common.toast(Strings.somethingWentWrong);
       log("LoginController : loginApi Error : ${e.runtimeType} : ${e.toString()}");

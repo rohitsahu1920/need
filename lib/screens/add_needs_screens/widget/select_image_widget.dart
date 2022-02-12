@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class SelectImagesWidget extends StatelessWidget {
-  String title;
-  Function onTap;
-  String imagePath;
+  final String title;
+  final Function onTap;
+  final String imagePath;
 
   SelectImagesWidget(
       {required this.title,

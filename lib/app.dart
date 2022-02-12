@@ -1,8 +1,5 @@
-import 'dart:io';
 
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
-import 'package:dio/adapter.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:need_flutter_app/res/app_theme.dart';

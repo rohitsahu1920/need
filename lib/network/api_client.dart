@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:dio/dio.dart';
-import 'package:get/get.dart' as g;
 import 'package:need_flutter_app/res/strings.dart';
 import 'package:need_flutter_app/utils/common.dart';
 
@@ -13,7 +13,6 @@ class APIClient {
     String path, {
     Map<String, dynamic>? queryParameters,
   }) async {
-
     print("API URL $path");
     Map<String, dynamic> responseData = Map();
 

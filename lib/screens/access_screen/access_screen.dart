@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:need_flutter_app/res/strings.dart';
@@ -24,7 +24,7 @@ class AccessScreen extends StatelessWidget {
         textStyle: TextStyles.appBarTittle.copyWith(
           fontFamily: FontFamily.semiBold,
         ),
-        onBackTap: (){},
+        onBackTap: () {},
         actions: [],
       ),
       body: Container(
@@ -49,12 +49,12 @@ class AccessScreen extends StatelessWidget {
               width: double.infinity,
               child: AppPrimaryButton(
                 text: Strings.allowAccess,
-                onPressed: () =>_checkPermission(),
+                onPressed: () => _checkPermission(),
               ),
             ),
             C20(),
             InkWell(
-              onTap:() {
+              onTap: () {
                 Get.offAll(() => DashBoardScreen());
               },
               child: Center(
