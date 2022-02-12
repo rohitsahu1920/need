@@ -19,14 +19,6 @@ class Validator {
     return "";
   }
 
-  static String validateInstanceURL(String value) {
-    if (value.isEmpty) return Strings.instanceError;
-    RegExp regexEmail = RegExp("$urlPattern");
-    if (regexEmail.hasMatch(value))
-      return "";
-    else
-      return Strings.instanceError;
-  }
 
   static String validatePassword(String value) {
     if (value.isEmpty) return Strings.passValidation;

@@ -47,6 +47,7 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
   }
 
   _setupDependency() async {
+
     SharedPreferences preferences = await SharedPreferences.getInstance();
     Get.put(preferences);
     Get.put(APIClient());
@@ -62,7 +63,6 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
   }
 
   _checkForPermissions() async {
-
     bool storageStatus = await Permission.storage.status.isGranted;
     bool location = await Permission.location.status.isGranted;
 

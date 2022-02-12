@@ -24,6 +24,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   after_layout: ^1.1.0
   shared_preferences: ^2.0.8
+  carousel_slider: ^4.0.0
+  image_picker: ^0.8.4+6
 
 dev_dependencies:
   flutter_test:
@@ -37,6 +39,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/raw/cer.cer
 
   fonts:
     - family: Sora-Bold

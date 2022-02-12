@@ -12,6 +12,7 @@ class AppTextField extends StatelessWidget {
   final int? maxLines;
   final bool? enabled;
   final int? maxLength;
+  final Widget? prefixIcon;
 
   const AppTextField({
     Key? key,
@@ -23,7 +24,8 @@ class AppTextField extends StatelessWidget {
     required this.validator,
     this.maxLines,
     this.enabled,
-    this.maxLength
+    this.maxLength,
+    this.prefixIcon
   }) : super(key: key);
 
   @override
@@ -37,6 +39,7 @@ class AppTextField extends StatelessWidget {
       keyboardType: keyboardType != null ? keyboardType : TextInputType.text,
       obscureText: passwordVisible ?? false,
       decoration: InputDecoration(
+        prefixIcon: prefixIcon,
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(10),

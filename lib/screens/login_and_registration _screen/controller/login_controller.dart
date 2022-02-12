@@ -31,16 +31,16 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     emailTextController = TextEditingController(
-        text: App.instance.devMode ? "rohitfr@yopmail.com" : "");
+        text: App.instance.devMode ? "rohit6@gmail.com" : "");
 
     passwordTextController =
-        TextEditingController(text: App.instance.devMode ? "welcome123" : "");
+        TextEditingController(text: App.instance.devMode ? "Rohit@123" : "");
 
     super.onInit();
   }
 
   void loginApi() async {
-    var status = await Permission.location.status;
+    //var status = await Permission.location.status;
     try {
       Get.dialog(
         LoadingDialog(),
@@ -52,20 +52,21 @@ class LoginController extends GetxController {
 
       _authManager.saveLoginData(loginResponse);
 
-      emailTextController.clear();
-      passwordTextController.clear();
+      //emailTextController.clear();
+      //passwordTextController.clear();
 
       if (loginResponse.status == '1') {
         Get.offAll(DashBoardScreen());
       } else {
-        Common.toast("Status is 0");
+        Common.toast("${loginResponse.status}");
+        Get.back();
       }
     } on DioError catch (e) {
       Get.back();
-      Common.toast(e.response!.data["Dio Error"]);
+      //Common.toast(e.response!.data["Dio Error"]);
     } catch (e) {
       Common.toast(Strings.somethingWentWrong);
-      log("LoginController : loginApi Error : ${e.runtimeType}");
+      log("LoginController : loginApi Error : ${e.runtimeType} : ${e.toString()}");
       Get.back();
     }
   }
