@@ -28,13 +28,18 @@ class DashBoardScreen extends StatelessWidget {
         body: _body(),
         floatingActionButton: new FloatingActionButton.extended(
             elevation: 0.0,
-            icon: const Icon(Icons.add),
+            icon: const Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
             backgroundColor: Colors.amber,
-            label: Text(Strings.addNeed),
-            onPressed: (){
+            label: Text(
+              Strings.addNeed,
+              style: TextStyle(fontSize: 12.0, color: Colors.black),
+            ),
+            onPressed: () {
               Get.to(() => AddNeedScreen());
-            }
-        ),
+            }),
       ),
     );
   }
