@@ -143,7 +143,71 @@ class AddNeedScreen extends StatelessWidget {
                       Icons.phone_android,
                       color: Colors.black,
                     ),
-                    hintText: Strings.addNeedTitle,
+                    hintText: Strings.mobileNumber,
+                    controller: _addNeedController.title,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return Strings.addNeedTitleValidation;
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.text,
+                  ),
+                  C10(),
+                  AppTextField(
+                    prefixIcon: Icon(
+                      Icons.map,
+                      color: Colors.black,
+                    ),
+                    hintText: Strings.addressOne,
+                    controller: _addNeedController.title,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return Strings.addNeedTitleValidation;
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.text,
+                  ),
+                  C10(),
+                  AppTextField(
+                    prefixIcon: Icon(
+                      Icons.map,
+                      color: Colors.black,
+                    ),
+                    hintText: Strings.addressTwo,
+                    controller: _addNeedController.title,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return Strings.addNeedTitleValidation;
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.text,
+                  ),
+                  C10(),
+                  AppTextField(
+                    prefixIcon: Icon(
+                      Icons.pin_drop,
+                      color: Colors.black,
+                    ),
+                    hintText: Strings.pinCode,
+                    controller: _addNeedController.title,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return Strings.addNeedTitleValidation;
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.text,
+                  ),
+                  C10(),
+                  AppTextField(
+                    prefixIcon: Icon(
+                      Icons.location_city,
+                      color: Colors.black,
+                    ),
+                    hintText: Strings.city,
                     controller: _addNeedController.title,
                     validator: (value) {
                       if (value!.isEmpty) {

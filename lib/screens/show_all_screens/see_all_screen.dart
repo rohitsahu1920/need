@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:need_flutter_app/res/strings.dart';
+import 'package:need_flutter_app/screens/need_in_detail_screen/need_in_detail_screen.dart';
 import 'package:need_flutter_app/screens/show_all_screens/widget/see_all_widget.dart';
 import 'package:need_flutter_app/utils/textstyles.dart';
 import 'package:need_flutter_app/widget/app_error_widget.dart';
@@ -44,7 +45,8 @@ class SeeAllScreen extends StatelessWidget {
       child: ListView(
         //color: Colors.amber,
         children: [
-          SeeAllWidget(),
+          InkWell(
+              onTap: () => Get.to(() => NeedInDetailScreen()), child: SeeAllWidget()),
           SeeAllWidget(),
         ],
       ),

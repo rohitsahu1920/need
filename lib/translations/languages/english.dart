@@ -45,5 +45,10 @@ class EnglishLanguage {
     "addNeedDesc": "Description",
     "mobileNumber": "Mobile number",
     "submit": "Submit",
+    "addressOne": "Address One",
+    "addressTwo": "Address Two",
+    "pinCode": "PinCode",
+    "city": "City",
+    "needInDetail": "Need In Detail",
   };
 }

@@ -49,6 +49,11 @@ class Strings {
   static String get addNeedDesc => 'addNeedDesc'.tr;
   static String get mobileNumber => 'mobileNumber'.tr;
   static String get submit => 'submit'.tr;
+  static String get addressOne => 'addressOne'.tr;
+  static String get addressTwo => 'addressTwo'.tr;
+  static String get pinCode => 'pinCode'.tr;
+  static String get city => 'city'.tr;
+  static String get needInDetail => 'needInDetail'.tr;
 
   //Validation
   static String get addNeedTitleValidation => 'addNeedTitleValidation'.tr;
