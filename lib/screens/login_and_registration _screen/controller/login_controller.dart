@@ -16,8 +16,22 @@ class LoginController extends GetxController {
   LoginRepository _loginRepository = Get.put(LoginRepository());
   AuthManager _authManager = Get.find();
 
+  late TextEditingController firstName = TextEditingController();
+  late TextEditingController lastName = TextEditingController();
+  late TextEditingController email = TextEditingController();
+  late TextEditingController phoneNumber = TextEditingController();
+  late TextEditingController addOne = TextEditingController();
+  late TextEditingController addTwo = TextEditingController();
+  late TextEditingController pinCode = TextEditingController();
+  late TextEditingController city = TextEditingController();
+  late TextEditingController state = TextEditingController();
+  late TextEditingController password = TextEditingController();
+  late TextEditingController confirmPassword = TextEditingController();
+
   late TextEditingController emailTextController;
   late TextEditingController passwordTextController;
+
+  var profileImage = "".obs;
 
   bool passwordVisible = false;
 
@@ -54,7 +68,7 @@ class LoginController extends GetxController {
       //passwordTextController.clear();
 
       if (loginResponse.status == '1') {
-        Get.offAll(DashBoardScreen());
+        Get.offAll(() => DashBoardScreen());
       } else {
         Common.toast("${loginResponse.status}");
         Get.back();
@@ -67,5 +81,16 @@ class LoginController extends GetxController {
       log("LoginController : loginApi Error : ${e.runtimeType} : ${e.toString()}");
       Get.back();
     }
+  }
+
+  void registrationApi()  async{
+    Get.dialog(
+      LoadingDialog(),
+      barrierDismissible: false,
+    );
+
+    LoginResponse loginResponse = await _loginRepository.login(
+        email: emailTextController.text, pass: passwordTextController.text);
+
   }
 }

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:need_flutter_app/mixins/after_layout.dart';
 import 'package:need_flutter_app/network/api_client.dart';
 import 'package:need_flutter_app/res/app_constants.dart';
+import 'package:need_flutter_app/screens/login_and_registration%20_screen/login_screen.dart';
 import 'package:need_flutter_app/utils/assets.dart';
 import 'package:need_flutter_app/utils/auth/auth_manager.dart';
 import 'package:need_flutter_app/utils/shared_pref_manager/sp_keys.dart';
@@ -68,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
 
     if (storageStatus &&
         location) {
-      Get.offAll(() => DashBoardScreen());
+      Get.offAll(() => LoginScreen());
     } else {
       Get.offAll(() => AccessScreen());
     }

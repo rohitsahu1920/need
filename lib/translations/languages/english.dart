@@ -27,7 +27,7 @@ class EnglishLanguage {
     "passValidation": "Password can not be blank",
     "forgotPass": "Forgot Password?",
     "signIn": "Sign In",
-    "newUserActivate": "New User? Activate",
+    "newUserRegister": "New User? Register",
     "invalidInput": "Invalid Input",
     "fieldMandatory": "This field required",
     "validEmail": "Please enter valid email",
@@ -50,5 +50,9 @@ class EnglishLanguage {
     "pinCode": "PinCode",
     "city": "City",
     "needInDetail": "Need In Detail",
+    "registration": "Registration",
+    "photoLibrary": "Photo Library",
+    "camera": "Camera",
+    "setProfileImage": "Set Profile \nImage",
   };
 }

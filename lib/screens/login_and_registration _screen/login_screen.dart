@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:need_flutter_app/res/app_colors.dart';
 import 'package:need_flutter_app/res/strings.dart';
+import 'package:need_flutter_app/screens/login_and_registration%20_screen/registration_screen.dart';
 import 'package:need_flutter_app/utils/assets.dart';
 import 'package:need_flutter_app/utils/methods.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
@@ -103,11 +104,11 @@ class LoginScreen extends StatelessWidget {
                           children: [
                             GestureDetector(
                               child: Text(
-                                Strings.newUserActivate,
+                                Strings.newUserRegister,
                               ),
-                              onTap: () {
-                                //Get.to(() => ActivateUserScreen());
-                              },
+                                onTap: () {
+                                  Get.to(() => RegistrationScreen());
+                                },
                             ),
                             C30(),
                           ],

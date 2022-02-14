@@ -80,15 +80,29 @@ class NeedInDetailScreen extends StatelessWidget {
                 );
               }).toList(),
             ),
-                C10(),
+                C15(),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(Sizes.s10, Sizes.s0, Sizes.s10, Sizes.s0),
+                  padding: EdgeInsets.fromLTRB(Sizes.s15, Sizes.s0, Sizes.s15, Sizes.s0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Long Title", style:  TextStyles.title,),
                       C10(),
                       Text("Long Title", style:  TextStyles.greyText,),
+                      C10(),
+                      Row(
+                        children: [
+                          Text("Date"),
+                          Spacer(),
+                          Text("City")
+                        ],
+                      ),
+                      C15(),
+                      Text("Phone Number"),
+                      C15(),
+                      Text("Full Address"),
+                      C15(),
+                      Text("Pin Code"),
                     ],
                   ),
                 ),

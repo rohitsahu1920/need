@@ -28,7 +28,7 @@ class Strings {
   static String get passValidation => 'passValidation'.tr;
   static String get forgotPass => 'forgotPass'.tr;
   static String get signIn => 'signIn'.tr;
-  static String get newUserActivate => 'newUserActivate'.tr;
+  static String get newUserRegister => 'newUserRegister'.tr;
   static String get invalidInput => 'invalidInput'.tr;
   static String get fieldMandatory => 'fieldMandatory'.tr;
   static String get validEmail => 'validEmail'.tr;
@@ -54,6 +54,10 @@ class Strings {
   static String get pinCode => 'pinCode'.tr;
   static String get city => 'city'.tr;
   static String get needInDetail => 'needInDetail'.tr;
+  static String get registration => 'registration'.tr;
+  static String get photoLibrary => 'photoLibrary'.tr;
+  static String get camera => 'camera'.tr;
+  static String get setProfileImage => 'setProfileImage'.tr;
 
   //Validation
   static String get addNeedTitleValidation => 'addNeedTitleValidation'.tr;
