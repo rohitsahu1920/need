@@ -76,9 +76,11 @@ class RegistrationScreen extends StatelessWidget {
                                                       .profileImage
                                                       .value
                                                       .isNotEmpty
-                                                  ? Image.file(File(
-                                                      _loginController
-                                                          .profileImage.value),fit: BoxFit.fill,)
+                                                  ? Image.file(
+                                                      File(_loginController
+                                                          .profileImage.value),
+                                                      fit: BoxFit.fill,
+                                                    )
                                                   : Icon(
                                                       Icons.person_rounded,
                                                       size: 32,
@@ -107,12 +109,36 @@ class RegistrationScreen extends StatelessWidget {
                           ),
                           C15(),
                           AppTextField(
-                            controller: _loginController.emailTextController,
+                            hintText: Strings.firstName,
+                            controller: _loginController.firstName,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return Strings.nameValidation;
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.text,
+                          ),
+                          C10(),
+                          AppTextField(
+                            hintText: Strings.lastName,
+                            controller: _loginController.lastName,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return Strings.lastNameValidation;
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.text,
+                          ),
+                          C10(),
+                          AppTextField(
+                            controller: _loginController.email,
                             validator: (value) {
                               if (value!.isEmpty ||
                                   !RegExp("${Validator.emailPattern}")
                                       .hasMatch(value)) {
-                                return 'Enter a valid email!';
+                                return Strings.validEmail;
                               }
                               return null;
                             },
@@ -120,44 +146,57 @@ class RegistrationScreen extends StatelessWidget {
                           ),
                           C10(),
                           AppTextField(
-                            controller: _loginController.emailTextController,
+                            controller: _loginController.phoneNumber,
                             validator: (value) {
-                              if (value!.isEmpty ||
-                                  !RegExp("${Validator.emailPattern}")
-                                      .hasMatch(value)) {
-                                return 'Enter a valid email!';
-                              }
+                              if (value!.isEmpty) return Strings.phone;
                               return null;
                             },
-                            keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.phone,
                           ),
                           C10(),
                           AppTextField(
-                            controller: _loginController.emailTextController,
+                            controller: _loginController.phoneNumber,
                             validator: (value) {
-                              if (value!.isEmpty ||
-                                  !RegExp("${Validator.emailPattern}")
-                                      .hasMatch(value)) {
-                                return 'Enter a valid email!';
-                              }
+                              if (value!.isEmpty) return Strings.phone;
                               return null;
                             },
-                            keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.phone,
                           ),
                           C10(),
-                          GetBuilder<LoginController>(
-                            builder: (controller) {
-                              return AppTextField(
-                                controller:
-                                    _loginController.passwordTextController,
-                                passwordVisible: controller.passwordVisible,
-                                validator: (value) {
-                                  if (value!.isEmpty)
-                                    return Strings.passValidation;
-                                  return null;
-                                },
-                              );
+                          AppTextField(
+                            controller: _loginController.phoneNumber,
+                            validator: (value) {
+                              if (value!.isEmpty) return Strings.phone;
+                              return null;
                             },
+                            keyboardType: TextInputType.phone,
+                          ),
+                          C10(),
+                          AppTextField(
+                            controller: _loginController.phoneNumber,
+                            validator: (value) {
+                              if (value!.isEmpty) return Strings.phone;
+                              return null;
+                            },
+                            keyboardType: TextInputType.phone,
+                          ),
+                          C10(),
+                          AppTextField(
+                            controller: _loginController.phoneNumber,
+                            validator: (value) {
+                              if (value!.isEmpty) return Strings.phone;
+                              return null;
+                            },
+                            keyboardType: TextInputType.phone,
+                          ),
+                          C10(),
+                          AppTextField(
+                            controller: _loginController.phoneNumber,
+                            validator: (value) {
+                              if (value!.isEmpty) return Strings.phone;
+                              return null;
+                            },
+                            keyboardType: TextInputType.phone,
                           ),
                           C10(),
                           GestureDetector(

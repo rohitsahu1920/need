@@ -54,5 +54,15 @@ class EnglishLanguage {
     "photoLibrary": "Photo Library",
     "camera": "Camera",
     "setProfileImage": "Set Profile \nImage",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "emailValidation": "Enter a valid email!",
+    "nameValidation": "Enter First Name!",
+    "lastNameValidation": "Enter Last Name!",
+    "setProfileImage": "Set Profile \nImage",
+    "setProfileImage": "Set Profile \nImage",
+    "setProfileImage": "Set Profile \nImage",
+
+
   };
 }

@@ -58,8 +58,15 @@ class Strings {
   static String get photoLibrary => 'photoLibrary'.tr;
   static String get camera => 'camera'.tr;
   static String get setProfileImage => 'setProfileImage'.tr;
+  static String get firstName => 'firstName'.tr;
+  static String get lastName => 'lastName'.tr;
+  static String get email => 'email'.tr;
+  static String get phone => 'phone'.tr;
 
   //Validation
   static String get addNeedTitleValidation => 'addNeedTitleValidation'.tr;
   static String get addNeedDescValidation => 'addNeedDescValidation'.tr;
+  static String get emailValidation => 'emailValidation'.tr;
+  static String get nameValidation => 'nameValidation'.tr;
+  static String get lastNameValidation => 'lastNameValidation'.tr;
 }
