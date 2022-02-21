@@ -67,6 +67,9 @@ class Strings {
   static String get password => 'password'.tr;
   static String get cPassword => 'cPassword'.tr;
   static String get state => 'state'.tr;
+  static String get resetPass => 'resetPass'.tr;
+  static String get goBackToLogin => 'goBackToLogin'.tr;
+  static String get sendOTP => 'sendOTP'.tr;
 
   //Validation
   static String get addNeedTitleValidation => 'addNeedTitleValidation'.tr;

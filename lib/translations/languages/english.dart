@@ -24,6 +24,7 @@ class EnglishLanguage {
     "getStarted": "Get Started",
     "somethingWentWrong": "Something went wrong",
     "appName": "Need",
+    "resetPass": "Reset Password",
     "passValidation": "Password can not be blank",
     "forgotPass": "Forgot Password?",
     "signIn": "Sign In",
@@ -68,6 +69,8 @@ class EnglishLanguage {
     "state": "State",
     "phoneValidation": "Enter valid 10 digit number",
     "addressValidation": "Enter valid Address",
+    "goBackToLogin": "Go back to login.",
+    "sendOTP": "Send OTP",
 
   };
 }

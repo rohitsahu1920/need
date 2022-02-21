@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:need_flutter_app/res/app_colors.dart';
 import 'package:need_flutter_app/res/strings.dart';
 import 'package:need_flutter_app/screens/login_and_registration%20_screen/registration_screen.dart';
+import 'package:need_flutter_app/screens/login_and_registration%20_screen/reset_password_screen.dart';
 import 'package:need_flutter_app/utils/assets.dart';
 import 'package:need_flutter_app/utils/methods.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
@@ -103,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                               textAlign: TextAlign.end,
                             ),
                             onTap: () {
-                              //Get.to(() => ResetPasswordStartScreen());
+                              Get.to(() => ResetPasswordScreen());
                             },
                           ),
                           C10(),
