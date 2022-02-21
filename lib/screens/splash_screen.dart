@@ -13,9 +13,7 @@ import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../app.dart';
 import 'access_screen/access_screen.dart';
-import 'dashboard_screen/dashboard_screen.dart';
 import 'intro_screens/intro_screen.dart';
 
 ///Created by Rohit Sahu on 17-09-2021

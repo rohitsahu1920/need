@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:need_flutter_app/res/strings.dart';
 import 'package:need_flutter_app/screens/access_screen/widgets/access_item_widget.dart';
-import 'package:need_flutter_app/screens/dashboard_screen/dashboard_screen.dart';
 import 'package:need_flutter_app/screens/login_and_registration%20_screen/login_screen.dart';
 import 'package:need_flutter_app/utils/assets.dart';
 import 'package:need_flutter_app/utils/common.dart';

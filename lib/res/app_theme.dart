@@ -9,7 +9,6 @@ ThemeData appTheme = ThemeData(
   iconTheme: IconThemeData(size: Sizes.s20, color: Colors.black),
   brightness: Brightness.light,
   primaryColor: AppColors.primary,
-  primaryColorBrightness: Brightness.light,
   primaryColorLight: AppColors.primaryLightColor,
   primaryColorDark: AppColors.primary,
   //accentColor: AppColors.primaryLightColor,

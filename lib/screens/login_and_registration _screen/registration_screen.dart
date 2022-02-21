@@ -13,7 +13,6 @@ import 'package:need_flutter_app/utils/ui_helper.dart';
 import 'package:need_flutter_app/utils/validator/validator.dart';
 import 'package:need_flutter_app/widget/app_primary_button.dart';
 import 'package:need_flutter_app/widget/app_text_field.dart';
-import 'package:need_flutter_app/widget/appbar_without_back.dart';
 
 import '../../widget/custom_appbar.dart';
 import 'controller/login_controller.dart';
