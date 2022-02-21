@@ -36,13 +36,14 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
   }
 
   _startApp() {
-    if (App.instance.devMode) return _checkForPermissions();
+    //if (App.instance.devMode) return _checkForPermissions();
     return Timer(splashDuration, () async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       if (preferences.getBool(SPKeys.isFirst.value) ?? true) {
         Get.offAll(() => IntroScreen());
       } else {
-        _checkForPermissions();
+        Get.offAll(() => LoginScreen());
+        //_checkForPermissions();
       }
     });
   }

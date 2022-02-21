@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:need_flutter_app/res/strings.dart';
@@ -36,6 +35,8 @@ class APIClient {
         Common.toast(Strings.loginAgain);
       } else
         throw e;
+    } catch (e) {
+      log("Dio Error :: ${e.toString()}");
     }
     return responseData;
   }
@@ -49,10 +50,6 @@ class APIClient {
     Map<String, dynamic> responseData = Map();
 
     try {
-      final ioc = new HttpClient();
-      ioc.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-      //final http = new IOClient(ioc);
       Response response = await _dio.post(
         Uri.encodeFull(path),
         data: data,
@@ -65,17 +62,18 @@ class APIClient {
       log("ok    $response");
       responseData = response.data;
     } on DioError catch (e) {
-      // if (e.response!.statusCode == 401) {
-      //   log("unauthorized");
-      //   Common.toast(Strings.loginAgain);
-      // } else if(e.response!.statusCode == 400){
-      //   Common.toast(e.response!.data["msg"]);
-      // }
-      // else{
-      //   throw e;
-      // }
+      if (e.response!.statusCode == 401) {
+        log("unauthorized");
+        Common.toast(Strings.loginAgain);
+      } else if (e.response!.statusCode == 400) {
+        Common.toast(e.response!.data["msg"]);
+      } else {
+        throw e;
+      }
       log("$e");
       log("Under dio");
+    } catch (e) {
+      log("Dio Error :: ${e.toString()}");
     }
     log("$responseData");
     return responseData;

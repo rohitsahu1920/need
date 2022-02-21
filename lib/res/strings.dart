@@ -28,7 +28,9 @@ class Strings {
   static String get passValidation => 'passValidation'.tr;
   static String get forgotPass => 'forgotPass'.tr;
   static String get signIn => 'signIn'.tr;
+  static String get sighUp => 'sighUp'.tr;
   static String get newUserRegister => 'newUserRegister'.tr;
+  static String get alreadyRegister => 'alreadyRegister'.tr;
   static String get invalidInput => 'invalidInput'.tr;
   static String get fieldMandatory => 'fieldMandatory'.tr;
   static String get validEmail => 'validEmail'.tr;
@@ -62,6 +64,9 @@ class Strings {
   static String get lastName => 'lastName'.tr;
   static String get email => 'email'.tr;
   static String get phone => 'phone'.tr;
+  static String get password => 'password'.tr;
+  static String get cPassword => 'cPassword'.tr;
+  static String get state => 'state'.tr;
 
   //Validation
   static String get addNeedTitleValidation => 'addNeedTitleValidation'.tr;
@@ -69,4 +74,6 @@ class Strings {
   static String get emailValidation => 'emailValidation'.tr;
   static String get nameValidation => 'nameValidation'.tr;
   static String get lastNameValidation => 'lastNameValidation'.tr;
+  static String get phoneValidation => 'phoneValidation'.tr;
+  static String get addressValidation => 'addressValidation'.tr;
 }

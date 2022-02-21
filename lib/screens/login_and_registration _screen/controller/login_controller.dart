@@ -33,10 +33,24 @@ class LoginController extends GetxController {
 
   var profileImage = "".obs;
 
-  bool passwordVisible = false;
 
-  void toggleVisible() {
-    passwordVisible = !passwordVisible;
+
+  bool passwordVisibleLogin = false;
+  bool passwordVisibleRegister = false;
+  bool cPasswordVisibleRegister = false;
+
+  void toggleVisibleLoginPassword() {
+    passwordVisibleLogin = !passwordVisibleLogin;
+    update();
+  }
+
+  void toggleVisibleRegisterPassword() {
+    passwordVisibleRegister = !passwordVisibleRegister;
+    update();
+  }
+
+  void toggleVisibleRegisterCPassword() {
+    cPasswordVisibleRegister = !cPasswordVisibleRegister;
     update();
   }
 

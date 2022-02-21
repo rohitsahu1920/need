@@ -17,6 +17,7 @@
         android:label="need_flutter_app"
         android:icon="@mipmap/ic_launcher">
         <activity
+            android:exported="true"
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"

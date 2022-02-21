@@ -52,7 +52,7 @@ class AppBackButton extends StatelessWidget {
         color: color,
         size: Sizes.s20,
       ),
-      onPressed: () => onTap!() ?? Get.back(),
+      onPressed: () => onTap ?? Get.back(),
     );
   }
 }

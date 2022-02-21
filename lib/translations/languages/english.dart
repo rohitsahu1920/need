@@ -27,7 +27,9 @@ class EnglishLanguage {
     "passValidation": "Password can not be blank",
     "forgotPass": "Forgot Password?",
     "signIn": "Sign In",
+    "sighUp": "Sign Up",
     "newUserRegister": "New User? Register",
+    "alreadyRegister": "Already Register? Login",
     "invalidInput": "Invalid Input",
     "fieldMandatory": "This field required",
     "validEmail": "Please enter valid email",
@@ -59,10 +61,13 @@ class EnglishLanguage {
     "emailValidation": "Enter a valid email!",
     "nameValidation": "Enter First Name!",
     "lastNameValidation": "Enter Last Name!",
-    "setProfileImage": "Set Profile \nImage",
-    "setProfileImage": "Set Profile \nImage",
-    "setProfileImage": "Set Profile \nImage",
-
+    "email": "Email",
+    "phone": "Phone Number",
+    "password": "password",
+    "cPassword": "Confirm password",
+    "state": "State",
+    "phoneValidation": "Enter valid 10 digit number",
+    "addressValidation": "Enter valid Address",
 
   };
 }

@@ -37,98 +37,114 @@ class LoginScreen extends StatelessWidget {
           C0(),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Form(
-              key: _formKey,
-              child: ListView(
-                children: [
-                  Image(
-                    image: AssetImage(Assets.login),
-                    fit: BoxFit.contain,
-                    width: screenWidth,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(Sizes.s15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        AppTextField(
-                          controller: _loginController.emailTextController,
-                          validator: (value) {
-                            if (value!.isEmpty ||
-                                !RegExp("${Validator.emailPattern}")
-                                    .hasMatch(value)) {
-                              return 'Enter a valid email!';
-                            }
-                            return null;
-                          },
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                        C10(),
-                        GetBuilder<LoginController>(
-                          builder: (controller) {
-                            return AppTextField(
-                              controller:
-                              _loginController.passwordTextController,
-                              passwordVisible: controller.passwordVisible,
-                              validator: (value) {
-                                if (value!.isEmpty) return Strings.passValidation;
-                                return null;
-                              },
-                            );
-                          },
-                        ),
-                        C10(),
-                        GestureDetector(
-                          child: Text(
-                            Strings.forgotPass,
-                            textAlign: TextAlign.end,
-                          ),
-                          onTap: () {
-                            //Get.to(() => ResetPasswordStartScreen());
-                          },
-                        ),
-                        C10(),
-                        SizedBox(
-                          width: double.infinity,
-                          child: AppPrimaryButton(
-                            text: Strings.signIn,
-                            onPressed: _login,
-                          ),
-                        ),
-                        C10(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              child: Text(
-                                Strings.newUserRegister,
-                              ),
-                                onTap: () {
-                                  Get.to(() => RegistrationScreen());
-                                },
-                            ),
-                            C30(),
-                          ],
-                        ),
-                      ],
+      body: Container(
+        color: Colors.amber,
+        child: Column(
+          children: [
+            Expanded(
+              child: Form(
+                key: _formKey,
+                child: ListView(
+                  children: [
+                    C10(),
+                    Image(
+                      image: AssetImage(Assets.login),
+                      fit: BoxFit.contain,
+                      width: 200,
+                      height: 200,
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: EdgeInsets.all(Sizes.s15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          AppTextField(
+                            hintText: Strings.email,
+                            controller: _loginController.emailTextController,
+                            validator: (value) {
+                              if (value!.isEmpty ||
+                                  !RegExp("${Validator.emailPattern}")
+                                      .hasMatch(value)) {
+                                return 'Enter a valid email!';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                          C10(),
+                          GetBuilder<LoginController>(
+                            builder: (controller) {
+                              return AppTextField(
+                                maxLines: 1,
+                                controller:
+                                _loginController.passwordTextController,
+                                hintText: Strings.password,
+                                passwordVisible: controller.passwordVisibleLogin,
+                                validator: (value) {
+                                  if (value!.isEmpty) return Strings.passValidation;
+                                  return null;
+                                },
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    controller.passwordVisibleLogin
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                    color: Colors.black,
+                                  ),
+                                  onPressed: controller.toggleVisibleLoginPassword,
+                                ),
+                              );
+                            },
+                          ),
+                          C10(),
+                          GestureDetector(
+                            child: Text(
+                              Strings.forgotPass,
+                              textAlign: TextAlign.end,
+                            ),
+                            onTap: () {
+                              //Get.to(() => ResetPasswordStartScreen());
+                            },
+                          ),
+                          C10(),
+                          SizedBox(
+                            width: double.infinity,
+                            child: AppPrimaryButton(
+                              text: Strings.signIn,
+                              onPressed: _login,
+                            ),
+                          ),
+                          C20(color: Colors.amber),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                child: Text(
+                                  Strings.newUserRegister,
+                                ),
+                                  onTap: () {
+                                    Get.to(() => RegistrationScreen());
+                                  },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(bottom: Sizes.s15),
-            child: Text(
-              Strings.poweredBy,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, color: AppColors.greyText),
+            Padding(
+              padding: EdgeInsets.only(bottom: Sizes.s15),
+              child: Text(
+                Strings.poweredBy,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: AppColors.greyText),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -55,7 +55,7 @@ class AccessScreen extends StatelessWidget {
             C20(),
             InkWell(
               onTap: () {
-                Get.offAll(() => DashBoardScreen());
+                Get.offAll(() => LoginScreen());
               },
               child: Center(
                 child: Text(Strings.skip),
