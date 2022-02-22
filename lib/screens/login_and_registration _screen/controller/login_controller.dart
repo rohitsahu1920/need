@@ -28,6 +28,9 @@ class LoginController extends GetxController {
   late TextEditingController password = TextEditingController();
   late TextEditingController confirmPassword = TextEditingController();
 
+
+  late TextEditingController resetEmail = TextEditingController();
+
   late TextEditingController emailTextController;
   late TextEditingController passwordTextController;
 

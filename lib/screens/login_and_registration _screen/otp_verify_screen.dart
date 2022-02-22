@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:need_flutter_app/screens/login_and_registration%20_screen/login_screen.dart';
-import 'package:need_flutter_app/screens/login_and_registration%20_screen/otp_verify_screen.dart';
-import 'package:need_flutter_app/widget/custom_appbar.dart';
-
+import 'package:pinput/pin_put/pin_put.dart';
 import '../../res/app_colors.dart';
 import '../../res/strings.dart';
 import '../../utils/assets.dart';
@@ -11,13 +8,13 @@ import '../../utils/methods.dart';
 import '../../utils/sizes.dart';
 import '../../utils/textstyles.dart';
 import '../../utils/ui_helper.dart';
-import '../../utils/validator/validator.dart';
 import '../../widget/app_primary_button.dart';
-import '../../widget/app_text_field.dart';
+import '../../widget/custom_appbar.dart';
 import 'controller/login_controller.dart';
+import 'login_screen.dart';
 
-class ResetPasswordScreen extends StatelessWidget {
-  ResetPasswordScreen({Key? key}) : super(key: key);
+class OTPVerifyScreen extends StatelessWidget {
+  OTPVerifyScreen({Key? key}) : super(key: key);
 
   final _loginController = Get.put(LoginController());
 
@@ -48,7 +45,9 @@ class ResetPasswordScreen extends StatelessWidget {
                 key: _formKey,
                 child: ListView(
                   children: [
-                    C40(color: Colors.amber,),
+                    C40(
+                      color: Colors.amber,
+                    ),
                     Center(
                       child: Image(
                         image: AssetImage(Assets.login),
@@ -57,26 +56,28 @@ class ResetPasswordScreen extends StatelessWidget {
                         height: 300,
                       ),
                     ),
-                    C40(color: Colors.amber,),
+                    C40(
+                      color: Colors.amber,
+                    ),
                     Padding(
                       padding: EdgeInsets.all(Sizes.s15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          AppTextField(
-                            hintText: Strings.email,
-                            controller: _loginController.resetEmail,
-                            validator: (value) {
-                              if (value!.isEmpty ||
-                                  !RegExp("${Validator.emailPattern}")
-                                      .hasMatch(value)) {
-                                return 'Enter a valid email!';
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.emailAddress,
+                          // PinPut(
+                          //   fieldsCount: 6,
+                          //   selectedFieldDecoration: _pinPutDecoration,
+                          //   followingFieldDecoration:
+                          //       _pinPutDecoration.copyWith(
+                          //     borderRadius: BorderRadius.circular(5.0),
+                          //     border: Border.all(
+                          //       color: Colors.deepPurpleAccent.withOpacity(.5),
+                          //     ),
+                          //   ),
+                          // ),
+                          C20(
+                            color: Colors.amber,
                           ),
-                          C20(color: Colors.amber,),
                           SizedBox(
                             width: double.infinity,
                             child: AppPrimaryButton(

@@ -45,7 +45,7 @@ class LoginScreen extends StatelessWidget {
             Expanded(
               child: Form(
                 key: _formKey,
-                child: ListView(
+                child: Column(
                   children: [
                     C10(),
                     Image(
@@ -54,6 +54,7 @@ class LoginScreen extends StatelessWidget {
                       width: 200,
                       height: 200,
                     ),
+                    Spacer(),
                     Padding(
                       padding: EdgeInsets.all(Sizes.s15),
                       child: Column(
