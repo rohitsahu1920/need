@@ -31,6 +31,12 @@ class LoginController extends GetxController {
 
   late TextEditingController resetEmail = TextEditingController();
 
+  TextEditingController otpController = TextEditingController();
+
+
+  TextEditingController resetPasswordController = TextEditingController();
+  TextEditingController resetConfirmPasswordController = TextEditingController();
+
   late TextEditingController emailTextController;
   late TextEditingController passwordTextController;
 
@@ -41,6 +47,8 @@ class LoginController extends GetxController {
   bool passwordVisibleLogin = false;
   bool passwordVisibleRegister = false;
   bool cPasswordVisibleRegister = false;
+  bool resetPasswordVisible = false;
+  bool resetConfirmPasswordVisible = false;
 
   void toggleVisibleLoginPassword() {
     passwordVisibleLogin = !passwordVisibleLogin;
@@ -54,6 +62,16 @@ class LoginController extends GetxController {
 
   void toggleVisibleRegisterCPassword() {
     cPasswordVisibleRegister = !cPasswordVisibleRegister;
+    update();
+  }
+
+  void toggleResetPassword() {
+    resetPasswordVisible = !resetPasswordVisible;
+    update();
+  }
+
+  void toggleResetCPassword() {
+    resetConfirmPasswordVisible = !resetConfirmPasswordVisible;
     update();
   }
 

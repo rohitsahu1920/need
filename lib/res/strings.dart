@@ -70,6 +70,7 @@ class Strings {
   static String get resetPass => 'resetPass'.tr;
   static String get goBackToLogin => 'goBackToLogin'.tr;
   static String get sendOTP => 'sendOTP'.tr;
+  static String get verifyOTP => 'verifyOTP'.tr;
 
   //Validation
   static String get addNeedTitleValidation => 'addNeedTitleValidation'.tr;

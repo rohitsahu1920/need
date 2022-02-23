@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:need_flutter_app/screens/login_and_registration%20_screen/confirm_password_screen.dart';
-import 'package:pinput/pin_put/pin_put.dart';
+
 import '../../res/app_colors.dart';
 import '../../res/strings.dart';
 import '../../utils/assets.dart';
@@ -10,17 +9,17 @@ import '../../utils/sizes.dart';
 import '../../utils/textstyles.dart';
 import '../../utils/ui_helper.dart';
 import '../../widget/app_primary_button.dart';
+import '../../widget/app_text_field.dart';
 import '../../widget/custom_appbar.dart';
 import 'controller/login_controller.dart';
 import 'login_screen.dart';
 
-class OTPVerifyScreen extends StatelessWidget {
-  OTPVerifyScreen({Key? key}) : super(key: key);
-
+class ConfirmPasswordScreen extends StatelessWidget {
+  ConfirmPasswordScreen({Key? key}) : super(key: key);
   final _loginController = Get.put(LoginController());
 
   final _formKey = GlobalKey<FormState>();
-  final FocusNode otp = FocusNode();
+
 
   _verifyOTP() async {
     if (!isFormValid(_formKey)) return;
@@ -66,33 +65,54 @@ class OTPVerifyScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          PinPut(
-                            fieldsCount: 4,
-                            onSubmit: (value) {
-
+                          GetBuilder<LoginController>(
+                            builder: (controller) {
+                              return AppTextField(
+                                maxLines: 1,
+                                controller:
+                                _loginController.resetPasswordController,
+                                hintText: Strings.password,
+                                passwordVisible: controller.resetPasswordVisible,
+                                validator: (value) {
+                                  if (value!.isEmpty) return Strings.passValidation;
+                                  return null;
+                                },
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    controller.resetPasswordVisible
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                    color: Colors.black,
+                                  ),
+                                  onPressed: controller.toggleResetPassword,
+                                ),
+                              );
                             },
-                            onChanged: (value) {
-
+                          ),
+                          C10(),
+                          GetBuilder<LoginController>(
+                            builder: (controller) {
+                              return AppTextField(
+                                maxLines: 1,
+                                controller:
+                                _loginController.resetConfirmPasswordController,
+                                hintText: Strings.cPassword,
+                                passwordVisible: controller.resetConfirmPasswordVisible,
+                                validator: (value) {
+                                  if (value!.isEmpty) return Strings.passValidation;
+                                  return null;
+                                },
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    controller.resetConfirmPasswordVisible
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                    color: Colors.black,
+                                  ),
+                                  onPressed: controller.toggleResetCPassword,
+                                ),
+                              );
                             },
-                            eachFieldConstraints: const BoxConstraints(
-                                minHeight: 50, minWidth: 50),
-                            focusNode: otp,
-                            controller: _loginController.otpController,
-                            submittedFieldDecoration:
-                            _pinPutDecoration.copyWith(
-                              borderRadius: BorderRadius.circular(25.0),
-                              border: Border.all(
-                                color: Colors.red,
-                              ),
-                            ),
-                            selectedFieldDecoration: _pinPutDecoration,
-                            followingFieldDecoration:
-                            _pinPutDecoration.copyWith(
-                              borderRadius: BorderRadius.circular(10.0),
-                              border: Border.all(
-                                color: Colors.amber,
-                              ),
-                            ),
                           ),
                           C20(
                             color: Colors.amber,
@@ -100,23 +120,9 @@ class OTPVerifyScreen extends StatelessWidget {
                           SizedBox(
                             width: double.infinity,
                             child: AppPrimaryButton(
-                              text: Strings.sendOTP,
+                              text: Strings.verifyOTP,
                               onPressed: _verifyOTP,
                             ),
-                          ),
-                          C20(color: Colors.amber),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              GestureDetector(
-                                child: Text(
-                                  Strings.goBackToLogin,
-                                ),
-                                onTap: () {
-                                  Get.to(() => LoginScreen());
-                                },
-                              ),
-                            ],
                           ),
                         ],
                       ),
@@ -136,14 +142,6 @@ class OTPVerifyScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  BoxDecoration get _pinPutDecoration {
-    return BoxDecoration(
-      color: Colors.blueGrey,
-      border: Border.all(color: Colors.grey),
-      borderRadius: BorderRadius.circular(15.0),
     );
   }
 

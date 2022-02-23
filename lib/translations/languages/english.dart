@@ -71,6 +71,6 @@ class EnglishLanguage {
     "addressValidation": "Enter valid Address",
     "goBackToLogin": "Go back to login.",
     "sendOTP": "Send OTP",
-
+    "verifyOTP":"Verify OTP"
   };
 }
