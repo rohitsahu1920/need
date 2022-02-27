@@ -7,5 +7,6 @@ class AppUrl {
   }
 
   static String get login => "login/login";
+  static String get registration => "login/registe";
 
 }

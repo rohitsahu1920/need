@@ -245,7 +245,12 @@ class RegistrationScreen extends StatelessWidget {
                               hintText: Strings.cPassword,
                               controller: _loginController.confirmPassword,
                               validator: (value) {
-                                if (value!.isEmpty) return Strings.phone;
+                                if (value!.isEmpty){
+                                  return Strings.phone;
+                                }
+                                if(_loginController.password != _loginController.confirmPassword){
+                                  return Strings.passwordDoesNotMatch;
+                                }
                                 return null;
                               },
                               keyboardType: TextInputType.visiblePassword,

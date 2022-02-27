@@ -1,14 +1,22 @@
+import 'dart:io';
+
+import 'package:dart_ipify/dart_ipify.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:need_flutter_app/dialogs/loading_dialog.dart';
+import 'package:need_flutter_app/models/api_response.dart';
 import 'package:need_flutter_app/models/login_response.dart';
 import 'package:need_flutter_app/repository/login_repository.dart';
+import 'package:need_flutter_app/res/api_keys.dart';
 import 'package:need_flutter_app/res/strings.dart';
 import 'package:need_flutter_app/screens/dashboard_screen/dashboard_screen.dart';
+import 'package:need_flutter_app/screens/login_and_registration%20_screen/login_screen.dart';
 import 'package:need_flutter_app/utils/auth/auth_manager.dart';
 import 'package:need_flutter_app/utils/common.dart';
 import 'package:need_flutter_app/utils/methods.dart';
+import 'package:unique_identifier/unique_identifier.dart';
 
 import '../../../app.dart';
 
@@ -28,21 +36,18 @@ class LoginController extends GetxController {
   late TextEditingController password = TextEditingController();
   late TextEditingController confirmPassword = TextEditingController();
 
-
   late TextEditingController resetEmail = TextEditingController();
 
   TextEditingController otpController = TextEditingController();
 
-
   TextEditingController resetPasswordController = TextEditingController();
-  TextEditingController resetConfirmPasswordController = TextEditingController();
+  TextEditingController resetConfirmPasswordController =
+      TextEditingController();
 
   late TextEditingController emailTextController;
   late TextEditingController passwordTextController;
 
   var profileImage = "".obs;
-
-
 
   bool passwordVisibleLogin = false;
   bool passwordVisibleRegister = false;
@@ -118,53 +123,79 @@ class LoginController extends GetxController {
     }
   }
 
-  void registrationApi()  async{
+  void registrationApi() async {
     Get.dialog(
       LoadingDialog(),
       barrierDismissible: false,
     );
 
-    LoginResponse loginResponse = await _loginRepository.login(
-        email: emailTextController.text, pass: passwordTextController.text);
+    try {
+      Map data = {
+        APIKeys.userid: phoneNumber.text + firstName.text + lastName.text,
+        APIKeys.firstName: firstName.text,
+        APIKeys.lastName: lastName.text,
+        APIKeys.profile: profileImage.value,
+        APIKeys.email: email.text,
+        APIKeys.phone: phoneNumber.text,
+        APIKeys.addOne: addOne.text,
+        APIKeys.addTwo: addTwo.text,
+        APIKeys.pinCode: pinCode.text,
+        APIKeys.city: city.text,
+        APIKeys.state: state.text,
+        APIKeys.ip: await Ipify.ipv4(),
+        APIKeys.iemi: kIsWeb ? "" : await UniqueIdentifier.serial,
+        APIKeys.androidVersion: kIsWeb
+            ? "Web"
+            : Platform.isAndroid
+                ? "Android"
+                : "IOS",
+        APIKeys.password: password.text,
+        APIKeys.isActive: "1",
+        APIKeys.isEmailVerified: "0",
+      };
 
-  }
+      ApiResponse apiResponse = await _loginRepository.registration(data);
 
-  void resetPassword() async{
-    Get.dialog(
-      LoadingDialog(),
-      barrierDismissible: false,
-    );
-    try{
+      if(apiResponse.status == "1"){
+        Get.to(() => LoginScreen());
+      }
+      else{
+        log("Something went Wrong");
+      }
 
-    }catch(e){}
-
-  }
-
-
-  void verifyOTP(){
-    Get.dialog(
-      LoadingDialog(),
-      barrierDismissible: false,
-    );
-
-    try{
-
-    }catch(e){
-
+    } on DioError catch (e) {
+      Get.back();
+      Common.toast(e.response!.data["Dio Error"]);
+    } catch (e) {
+      Common.toast(Strings.somethingWentWrong);
+      log("LoginController : registration Error : ${e.runtimeType} : ${e.toString()}");
+      Get.back();
     }
-
   }
 
-  void changePassword(){
+  void resetPassword() async {
+    Get.dialog(
+      LoadingDialog(),
+      barrierDismissible: false,
+    );
+    try {} catch (e) {}
+  }
+
+  void verifyOTP() {
     Get.dialog(
       LoadingDialog(),
       barrierDismissible: false,
     );
 
-    try{
+    try {} catch (e) {}
+  }
 
-    }catch(e){
+  void changePassword() {
+    Get.dialog(
+      LoadingDialog(),
+      barrierDismissible: false,
+    );
 
-    }
+    try {} catch (e) {}
   }
 }

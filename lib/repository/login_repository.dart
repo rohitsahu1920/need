@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:need_flutter_app/models/api_response.dart';
 import 'package:need_flutter_app/models/login_response.dart';
 import 'package:need_flutter_app/network/api_client.dart';
 import 'package:need_flutter_app/network/urls.dart';
@@ -16,5 +17,14 @@ class LoginRepository {
     Map<String, dynamic> response = await _apiClient.post(url, data: data);
     log(response.toString());
     return LoginResponse.fromJson(response);
+  }
+
+  Future<ApiResponse> registration(Map data) async{
+    final url = AppUrl.urlBase() + AppUrl.registration;
+
+    Map<String, dynamic> response = await _apiClient.post(url, data: data);
+    log(response.toString());
+
+    return ApiResponse.fromJson(response);
   }
 }

@@ -20,6 +20,7 @@ class APIKeys{
   static String get iemi => 'iemi';
   static String get androidVersion => 'android_version';
   static String get isActive => 'is_active';
+  static String get isEmailVerified => 'isEmailVerified';
 
   //Add Product
   static String get productId => 'product_id';

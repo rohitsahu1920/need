@@ -73,5 +73,6 @@ class EnglishLanguage {
     "sendOTP": "Send OTP",
     "verifyOTP":"Verify OTP",
     "changePassword":"Change Password",
+    "passwordDoesNotMatch":"Password Does not match.",
   };
 }

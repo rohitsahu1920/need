@@ -28,6 +28,9 @@ dependencies:
   image_picker: ^0.8.4+6
   cached_network_image: ^3.2.0
   pinput: ^1.2.2
+  dart_ipify: ^1.1.1
+  device_info_plus: ^3.2.2
+  unique_identifier: ^0.2.2
 
 dev_dependencies:
   flutter_test:
