@@ -128,4 +128,43 @@ class LoginController extends GetxController {
         email: emailTextController.text, pass: passwordTextController.text);
 
   }
+
+  void resetPassword() async{
+    Get.dialog(
+      LoadingDialog(),
+      barrierDismissible: false,
+    );
+    try{
+
+    }catch(e){}
+
+  }
+
+
+  void verifyOTP(){
+    Get.dialog(
+      LoadingDialog(),
+      barrierDismissible: false,
+    );
+
+    try{
+
+    }catch(e){
+
+    }
+
+  }
+
+  void changePassword(){
+    Get.dialog(
+      LoadingDialog(),
+      barrierDismissible: false,
+    );
+
+    try{
+
+    }catch(e){
+
+    }
+  }
 }

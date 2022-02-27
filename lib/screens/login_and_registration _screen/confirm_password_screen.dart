@@ -21,9 +21,9 @@ class ConfirmPasswordScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
 
-  _verifyOTP() async {
+  _resetPassword() async {
     if (!isFormValid(_formKey)) return;
-    Get.to(() => ConfirmPasswordScreen());
+    Get.to(() => LoginScreen());
     //_loginController.loginApi();
   }
 
@@ -120,8 +120,8 @@ class ConfirmPasswordScreen extends StatelessWidget {
                           SizedBox(
                             width: double.infinity,
                             child: AppPrimaryButton(
-                              text: Strings.verifyOTP,
-                              onPressed: _verifyOTP,
+                              text: Strings.changePassword,
+                              onPressed: _resetPassword,
                             ),
                           ),
                         ],

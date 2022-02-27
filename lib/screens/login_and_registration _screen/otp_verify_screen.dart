@@ -32,7 +32,7 @@ class OTPVerifyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarCustom(
-        title: Strings.resetPass,
+        title: Strings.verifyOTP,
         textStyle: TextStyles.appBarBold,
         actions: [
           C0(),
@@ -100,7 +100,7 @@ class OTPVerifyScreen extends StatelessWidget {
                           SizedBox(
                             width: double.infinity,
                             child: AppPrimaryButton(
-                              text: Strings.sendOTP,
+                              text: Strings.verifyOTP,
                               onPressed: _verifyOTP,
                             ),
                           ),

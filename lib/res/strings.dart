@@ -71,6 +71,7 @@ class Strings {
   static String get goBackToLogin => 'goBackToLogin'.tr;
   static String get sendOTP => 'sendOTP'.tr;
   static String get verifyOTP => 'verifyOTP'.tr;
+  static String get changePassword => 'changePassword'.tr;
 
   //Validation
   static String get addNeedTitleValidation => 'addNeedTitleValidation'.tr;

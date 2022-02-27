@@ -11,7 +11,7 @@ class LoginRepository {
   Future<LoginResponse> login(
       {required String email, required String pass}) async {
     final url = AppUrl.urlBase() + AppUrl.login;
-    Map data = {APIKeys.email: email, APIKeys.pass: pass};
+    Map data = {APIKeys.email: email, APIKeys.password: pass};
 
     Map<String, dynamic> response = await _apiClient.post(url, data: data);
     log(response.toString());
