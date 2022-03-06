@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:need_flutter_app/res/app_colors.dart';
 import 'package:need_flutter_app/res/strings.dart';
 import 'package:need_flutter_app/screens/add_needs_screens/add_need_screen.dart';
+import 'package:need_flutter_app/screens/drawer_screens/drawer_screen.dart';
 import 'package:need_flutter_app/screens/show_all_screens/see_all_screen.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:need_flutter_app/utils/textstyles.dart';
@@ -19,13 +20,27 @@ class DashBoardScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: appBarWithoutBack(
-          buttonColor: Colors.black,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(
+                  Icons.menu,
+                  color: Colors.amber,
+                ),
+                onPressed: () {
+                  //_drawer();
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+          ),
           title: Strings.notification,
           textStyle: TextStyles.appBarTittle,
           actions: [],
-          onBackTap: () => Get.back(),
         ),
         body: _body(),
+        drawer: DrawerScreen(),
         floatingActionButton: new FloatingActionButton.extended(
             elevation: 0.0,
             icon: const Icon(

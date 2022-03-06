@@ -92,35 +92,38 @@ class LoginController extends GetxController {
   }
 
   void loginApi() async {
+
+    Get.offAll(() => DashBoardScreen());
+
     //var status = await Permission.location.status;
-    try {
-      Get.dialog(
-        LoadingDialog(),
-        barrierDismissible: false,
-      );
-
-      LoginResponse loginResponse = await _loginRepository.login(
-          email: emailTextController.text, pass: passwordTextController.text);
-
-      _authManager.saveLoginData(loginResponse);
-
-      //emailTextController.clear();
-      //passwordTextController.clear();
-
-      if (loginResponse.status == '1') {
-        Get.offAll(() => DashBoardScreen());
-      } else {
-        Common.toast("${loginResponse.status}");
-        Get.back();
-      }
-    } on DioError catch (e) {
-      Get.back();
-      Common.toast(e.response!.data["Dio Error"]);
-    } catch (e) {
-      Common.toast(Strings.somethingWentWrong);
-      log("LoginController : loginApi Error : ${e.runtimeType} : ${e.toString()}");
-      Get.back();
-    }
+    // try {
+    //   Get.dialog(
+    //     LoadingDialog(),
+    //     barrierDismissible: false,
+    //   );
+    //
+    //   LoginResponse loginResponse = await _loginRepository.login(
+    //       email: emailTextController.text, pass: passwordTextController.text);
+    //
+    //   _authManager.saveLoginData(loginResponse);
+    //
+    //   emailTextController.clear();
+    //   passwordTextController.clear();
+    //
+    //   if (loginResponse.status == '1') {
+    //     Get.offAll(() => DashBoardScreen());
+    //   } else {
+    //     Common.toast("${loginResponse.status}");
+    //     Get.back();
+    //   }
+    // } on DioError catch (e) {
+    //   Get.back();
+    //   Common.toast(e.response!.data["Dio Error"]);
+    // } catch (e) {
+    //   Common.toast(Strings.somethingWentWrong);
+    //   log("LoginController : loginApi Error : ${e.runtimeType} : ${e.toString()}");
+    //   Get.back();
+    //  }
   }
 
   void registrationApi() async {
