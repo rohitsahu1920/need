@@ -25,6 +25,8 @@ class APIClient {
         ),
         queryParameters: queryParameters,
       );
+
+      log("ok    $response");
       log("ok    $response");
       responseData = response.data;
     } on DioError catch (e) {
