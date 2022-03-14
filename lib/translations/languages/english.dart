@@ -79,6 +79,7 @@ class EnglishLanguage {
     "contactUs":"Contact us",
     "logout":"Logout",
     "deleteAccount":"Delete Account",
-
+    "reportNeed":"Report this need",
+    "callHelper":"Call the Helper",
   };
 }

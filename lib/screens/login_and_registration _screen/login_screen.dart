@@ -22,6 +22,8 @@ class LoginScreen extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  LoginScreen({Key? key}) : super(key: key);
+
   _login() async {
     if (!isFormValid(_formKey)) return;
 
@@ -48,13 +50,13 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     C10(),
-                    Image(
+                    const Image(
                       image: AssetImage(Assets.login),
                       fit: BoxFit.contain,
                       width: 200,
                       height: 200,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Padding(
                       padding: EdgeInsets.all(Sizes.s15),
                       child: Column(
@@ -116,7 +118,7 @@ class LoginScreen extends StatelessWidget {
                               onPressed: _login,
                             ),
                           ),
-                          C20(color: Colors.amber),
+                          const C20(color: Colors.amber),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -141,7 +143,7 @@ class LoginScreen extends StatelessWidget {
               padding: EdgeInsets.only(bottom: Sizes.s15),
               child: Text(
                 Strings.poweredBy,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold, color: AppColors.greyText),
               ),
             ),

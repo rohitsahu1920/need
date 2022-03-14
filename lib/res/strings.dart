@@ -28,8 +28,10 @@ class Strings {
   static String get passValidation => 'passValidation'.tr;
   static String get forgotPass => 'forgotPass'.tr;
   static String get signIn => 'signIn'.tr;
+  static String get callHelper => 'callHelper'.tr;
   static String get sighUp => 'sighUp'.tr;
   static String get newUserRegister => 'newUserRegister'.tr;
+  static String get reportNeed => 'reportNeed'.tr;
   static String get alreadyRegister => 'alreadyRegister'.tr;
   static String get invalidInput => 'invalidInput'.tr;
   static String get fieldMandatory => 'fieldMandatory'.tr;
