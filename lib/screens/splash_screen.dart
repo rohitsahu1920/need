@@ -21,6 +21,8 @@ import 'intro_screens/intro_screen.dart';
 const Duration splashDuration = Duration(seconds: 3);
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
