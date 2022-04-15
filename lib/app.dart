@@ -23,9 +23,9 @@ class App {
     runApp(ConnectivityAppWrapper(
       app: GetMaterialApp(
         translations: AppTranslations(),
-        locale: Locale('en', 'US'),
-        fallbackLocale: Locale('en', 'US'),
-        home: SplashScreen(),
+        locale: const Locale('en', 'US'),
+        fallbackLocale: const Locale('en', 'US'),
+        home: const SplashScreen(),
         theme: appTheme,
       ),
     ));

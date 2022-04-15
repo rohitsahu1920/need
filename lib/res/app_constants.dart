@@ -7,9 +7,9 @@ class AppConstants {
 }
 
 final supportedLanguages = <LocaleModel>[
-  LocaleModel('English', Locale('en', 'US')),
-  LocaleModel('Spanish', Locale('es')),
-  LocaleModel('Portuguese', Locale('pt')),
+  LocaleModel('English', const Locale('en', 'US')),
+  LocaleModel('Spanish', const Locale('es')),
+  LocaleModel('Portuguese', const Locale('pt')),
 ];
 
 class UserType {

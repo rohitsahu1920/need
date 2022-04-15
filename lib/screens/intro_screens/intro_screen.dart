@@ -16,6 +16,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'model/slide.dart';
 
 class IntroScreen extends StatefulWidget {
+  const IntroScreen({Key? key}) : super(key: key);
+
   @override
   _IntroScreenState createState() => _IntroScreenState();
 }
@@ -33,14 +35,15 @@ class _IntroScreenState extends State<IntroScreen> {
   void initState() {
     super.initState();
     isFirstLaunch();
-    _timer = Timer.periodic(Duration(seconds: 5), (Timer timer) {
-      if (_currentPage < 3)
+    _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
+      if (_currentPage < 3) {
         _currentPage++;
-      else
+      } else {
         _currentPage = 0;
+      }
 
       _pageController.animateToPage(_currentPage,
-          duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+          duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
     });
   }
 
@@ -103,11 +106,11 @@ class _IntroScreenState extends State<IntroScreen> {
               children: [
                 for (int i = 0; i < slideList.length; i++)
                   if (i == _currentPage)
-                    SliderDots(
+                    const SliderDots(
                       isActive: true,
                     )
                   else
-                    SliderDots(
+                    const SliderDots(
                       isActive: false,
                     ),
               ],
@@ -122,10 +125,10 @@ class _IntroScreenState extends State<IntroScreen> {
                 },
               ),
             ),
-            C20(),
+            const C20(),
             Text(
               Strings.poweredBy,
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold, color: AppColors.greyText),
             ),
           ],

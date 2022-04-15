@@ -14,7 +14,7 @@ class SliderDots extends StatelessWidget {
       height: Sizes.s7,
       width: Sizes.s7,
       decoration: BoxDecoration(
-        color: isActive ? AppColors.pink : AppColors.greyText,
+        color: isActive ? AppColors.yellow : AppColors.greyText,
         borderRadius: BorderRadius.all(
           Radius.circular(Sizes.s12),
         ),

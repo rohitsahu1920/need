@@ -81,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
     return Scaffold(
       body: Center(
         child: Image(
-          image: AssetImage(Assets.logo),
+          image: const AssetImage(Assets.logo),
           height: Sizes.s100,
           width: Sizes.s100,
         ),
