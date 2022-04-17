@@ -8,6 +8,7 @@ import '../../utils/methods.dart';
 import '../../utils/sizes.dart';
 import '../../utils/textstyles.dart';
 import '../../utils/ui_helper.dart';
+import '../../utils/validator/validator.dart';
 import '../../widget/app_primary_button.dart';
 import '../../widget/app_text_field.dart';
 import '../../widget/custom_appbar.dart';
@@ -45,97 +46,113 @@ class ConfirmPasswordScreen extends StatelessWidget {
               child: Form(
                 key: _formKey,
                 child: ListView(
-                  children: [
+                  children: const [
                     C40(
                       color: Colors.amber,
                     ),
                     Center(
+                      heightFactor: 3,
                       child: Image(
                         image: AssetImage(Assets.login),
                         fit: BoxFit.contain,
-                        width: 300,
-                        height: 300,
+                        width: 200,
+                        height: 200,
                       ),
                     ),
                     C40(
                       color: Colors.amber,
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(Sizes.s15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          GetBuilder<LoginController>(
-                            builder: (controller) {
-                              return AppTextField(
-                                maxLines: 1,
-                                controller:
-                                _loginController.resetPasswordController,
-                                hintText: Strings.password,
-                                passwordVisible: controller.resetPasswordVisible,
-                                validator: (value) {
-                                  if (value!.isEmpty) return Strings.passValidation;
-                                  return null;
-                                },
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    controller.resetPasswordVisible
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.black,
-                                  ),
-                                  onPressed: controller.toggleResetPassword,
-                                ),
-                              );
-                            },
-                          ),
-                          C10(),
-                          GetBuilder<LoginController>(
-                            builder: (controller) {
-                              return AppTextField(
-                                maxLines: 1,
-                                controller:
-                                _loginController.resetConfirmPasswordController,
-                                hintText: Strings.cPassword,
-                                passwordVisible: controller.resetConfirmPasswordVisible,
-                                validator: (value) {
-                                  if (value!.isEmpty) return Strings.passValidation;
-                                  return null;
-                                },
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    controller.resetConfirmPasswordVisible
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.black,
-                                  ),
-                                  onPressed: controller.toggleResetCPassword,
-                                ),
-                              );
-                            },
-                          ),
-                          C20(
-                            color: Colors.amber,
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: AppPrimaryButton(
-                              text: Strings.changePassword,
-                              onPressed: _resetPassword,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
+
                   ],
                 ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(Sizes.s15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  AppTextField(
+                    hintText: Strings.email,
+                    controller: _loginController.resetEmail,
+                    validator: (value) {
+                      if (value!.isEmpty ||
+                          !RegExp("${Validator.emailPattern}")
+                              .hasMatch(value)) {
+                        return 'Enter a valid email!';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  C10(),
+                  GetBuilder<LoginController>(
+                    builder: (controller) {
+                      return AppTextField(
+                        maxLines: 1,
+                        controller:
+                        _loginController.resetPasswordController,
+                        hintText: Strings.password,
+                        passwordVisible: controller.resetPasswordVisible,
+                        validator: (value) {
+                          if (value!.isEmpty) return Strings.passValidation;
+                          return null;
+                        },
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            controller.resetPasswordVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.black,
+                          ),
+                          onPressed: controller.toggleResetPassword,
+                        ),
+                      );
+                    },
+                  ),
+                  C10(),
+                  GetBuilder<LoginController>(
+                    builder: (controller) {
+                      return AppTextField(
+                        maxLines: 1,
+                        controller:
+                        _loginController.resetConfirmPasswordController,
+                        hintText: Strings.cPassword,
+                        passwordVisible: controller.resetConfirmPasswordVisible,
+                        validator: (value) {
+                          if (value!.isEmpty) return Strings.passValidation;
+                          return null;
+                        },
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            controller.resetConfirmPasswordVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.black,
+                          ),
+                          onPressed: controller.toggleResetCPassword,
+                        ),
+                      );
+                    },
+                  ),
+                  const C30(
+                    color: Colors.amber,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: AppPrimaryButton(
+                      text: Strings.changePassword,
+                      onPressed: _resetPassword,
+                    ),
+                  ),
+                ],
               ),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: Sizes.s10),
               child: Text(
                 Strings.poweredBy,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold, color: AppColors.greyText),
               ),
             ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:need_flutter_app/res/app_colors.dart';
 import 'package:need_flutter_app/res/strings.dart';
+import 'package:need_flutter_app/screens/login_and_registration%20_screen/confirm_password_screen.dart';
 import 'package:need_flutter_app/screens/login_and_registration%20_screen/registration_screen.dart';
 import 'package:need_flutter_app/screens/login_and_registration%20_screen/reset_password_screen.dart';
 import 'package:need_flutter_app/utils/assets.dart';
@@ -50,11 +51,14 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     C10(),
-                    const Image(
-                      image: AssetImage(Assets.login),
-                      fit: BoxFit.contain,
-                      width: 200,
-                      height: 200,
+                    const Center(
+                      heightFactor: 3,
+                      child: Image(
+                        image: AssetImage(Assets.login),
+                        fit: BoxFit.contain,
+                        width: 200,
+                        height: 200,
+                      ),
                     ),
                     const Spacer(),
                     Padding(
@@ -107,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                               textAlign: TextAlign.end,
                             ),
                             onTap: () {
-                              Get.to(() => ResetPasswordScreen());
+                              Get.to(() => ConfirmPasswordScreen());
                             },
                           ),
                           C10(),

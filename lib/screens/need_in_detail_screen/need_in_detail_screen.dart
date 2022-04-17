@@ -126,7 +126,7 @@ class NeedInDetailScreen extends StatelessWidget {
                   const Text("Pin Code"),
                   C15(),
                   SizedBox(
-                    height: 200,
+                    height: 300,
                     width: double.infinity,
                     child: Card(
                       color: Colors.amber,

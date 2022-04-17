@@ -84,7 +84,7 @@ class RegistrationScreen extends StatelessWidget {
                                                         .profileImage.value),
                                                     fit: BoxFit.fill,
                                                   )
-                                                      : Icon(
+                                                      : const Icon(
                                                     Icons.person_rounded,
                                                     size: 32,
                                                     color: Colors.black,
@@ -155,8 +155,9 @@ class RegistrationScreen extends StatelessWidget {
                             validator: (value) {
                               if (value!.isEmpty ||
                                   !RegExp("${Validator.mobilePattern}")
-                                      .hasMatch(value))
+                                      .hasMatch(value)) {
                                 return Strings.phoneValidation;
+                              }
                               return null;
                             },
                             keyboardType: TextInputType.phone,
@@ -166,8 +167,9 @@ class RegistrationScreen extends StatelessWidget {
                             hintText: Strings.addressOne,
                             controller: _loginController.addOne,
                             validator: (value) {
-                              if (value!.isEmpty)
+                              if (value!.isEmpty) {
                                 return Strings.addressValidation;
+                              }
                               return null;
                             },
                             keyboardType: TextInputType.streetAddress,
@@ -177,8 +179,9 @@ class RegistrationScreen extends StatelessWidget {
                             hintText: Strings.addressTwo,
                             controller: _loginController.addTwo,
                             validator: (value) {
-                              if (value!.isEmpty)
+                              if (value!.isEmpty) {
                                 return Strings.addressValidation;
+                              }
                               return null;
                             },
                             keyboardType: TextInputType.streetAddress,
@@ -188,7 +191,7 @@ class RegistrationScreen extends StatelessWidget {
                             hintText: Strings.pinCode,
                             controller: _loginController.pinCode,
                             validator: (value) {
-                              if (value!.isEmpty) return Strings.phone;
+                              if (value!.isEmpty && value.length < 6) return Strings.pinCodeValidation;
                               return null;
                             },
                             keyboardType: TextInputType.number,
@@ -208,7 +211,7 @@ class RegistrationScreen extends StatelessWidget {
                             hintText: Strings.state,
                             controller: _loginController.state,
                             validator: (value) {
-                              if (value!.isEmpty) return Strings.phone;
+                              if (value!.isEmpty) return Strings.cityValidation;
                               return null;
                             },
                             keyboardType: TextInputType.text,
@@ -221,7 +224,7 @@ class RegistrationScreen extends StatelessWidget {
                               hintText: Strings.password,
                               controller: controller.password,
                               validator: (value) {
-                                if (value!.isEmpty) return Strings.phone;
+                                if (value!.isEmpty) return Strings.passValidation;
                                 return null;
                               },
                               keyboardType: TextInputType.visiblePassword,
@@ -246,9 +249,9 @@ class RegistrationScreen extends StatelessWidget {
                               controller: _loginController.confirmPassword,
                               validator: (value) {
                                 if (value!.isEmpty){
-                                  return Strings.phone;
+                                  return Strings.passValidation;
                                 }
-                                if(_loginController.password != _loginController.confirmPassword){
+                                if(_loginController.password.text != _loginController.confirmPassword.text){
                                   return Strings.passwordDoesNotMatch;
                                 }
                                 return null;
@@ -299,7 +302,7 @@ class RegistrationScreen extends StatelessWidget {
               padding: EdgeInsets.only(bottom: Sizes.s15),
               child: Text(
                 Strings.poweredBy,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold, color: AppColors.greyText),
               ),
             ),

@@ -15,16 +15,18 @@ class AddNeedController extends GetxController{
   TextEditingController phoneNumber = TextEditingController();
   TextEditingController addOne = TextEditingController();
   TextEditingController addTwo = TextEditingController();
+  TextEditingController pinCode = TextEditingController();
+  TextEditingController city = TextEditingController();
 
   List<String> dropdownItems = [
+    "Select Need type",
     "Food",
-    "Transport",
-    "Personal",
-    "Shopping",
+    "Clothes",
+    "Books",
     "Medical",
-    "Rent",
-    "Movie",
-    "Salary"
+    "Shelter",
+    "Miscellaneous",
+    "Other"
   ];
 
 
@@ -61,5 +63,12 @@ class AddNeedController extends GetxController{
     imageOne.value = "";
     imageTwo.value = "";
     imageThree.value = "";
+    title.text = "";
+    description.text = "";
+    phoneNumber.text = "";
+    addOne.text = "";
+    addTwo.text = "";
+    pinCode.text = "";
+    city.text = "";
   }
 }

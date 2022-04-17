@@ -48,8 +48,8 @@ class DashBoardScreen extends StatelessWidget {
           actions: [],
         ),
         body: _body(),
-        drawer: DrawerScreen(),
-        floatingActionButton: new FloatingActionButton.extended(
+        drawer: const DrawerScreen(),
+        floatingActionButton: FloatingActionButton.extended(
             elevation: 0.0,
             icon: const Icon(
               Icons.add,
@@ -78,9 +78,9 @@ class DashBoardScreen extends StatelessWidget {
                   enableInfiniteScroll: true,
                   height: 175.0,
                   viewportFraction: 0.93,
-                  autoPlayInterval: Duration(seconds: 3),
+                  autoPlayInterval: const Duration(seconds: 3),
                   autoPlay: true,
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
                   autoPlayCurve: Curves.easeInQuad,
                 ),
                 items: [1, 2, 3,].map((i) {
@@ -88,14 +88,14 @@ class DashBoardScreen extends StatelessWidget {
                     builder: (BuildContext context) {
                       return Container(
                           width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.symmetric(horizontal: 5.0),
+                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(
                                 color: Colors.white,
                               ),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
+                                  const BorderRadius.all(Radius.circular(20))),
                           child: Center(
                             child: Image.asset(_dashboardController.imageList[i-1], fit: BoxFit.cover,),
                           ));

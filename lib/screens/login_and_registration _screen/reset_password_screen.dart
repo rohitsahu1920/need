@@ -47,7 +47,7 @@ class ResetPasswordScreen extends StatelessWidget {
               child: Form(
                 key: _formKey,
                 child: ListView(
-                  children: [
+                  children: const [
                     C40(color: Colors.amber,),
                     Center(
                       child: Image(
@@ -58,58 +58,58 @@ class ResetPasswordScreen extends StatelessWidget {
                       ),
                     ),
                     C40(color: Colors.amber,),
-                    Padding(
-                      padding: EdgeInsets.all(Sizes.s15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          AppTextField(
-                            hintText: Strings.email,
-                            controller: _loginController.resetEmail,
-                            validator: (value) {
-                              if (value!.isEmpty ||
-                                  !RegExp("${Validator.emailPattern}")
-                                      .hasMatch(value)) {
-                                return 'Enter a valid email!';
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.emailAddress,
-                          ),
-                          C20(color: Colors.amber,),
-                          SizedBox(
-                            width: double.infinity,
-                            child: AppPrimaryButton(
-                              text: Strings.sendOTP,
-                              onPressed: _resetPass,
-                            ),
-                          ),
-                          C20(color: Colors.amber),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              GestureDetector(
-                                child: Text(
-                                  Strings.goBackToLogin,
-                                ),
-                                onTap: () {
-                                  Get.to(() => LoginScreen());
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
                   ],
                 ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(Sizes.s15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  AppTextField(
+                    hintText: Strings.email,
+                    controller: _loginController.resetEmail,
+                    validator: (value) {
+                      if (value!.isEmpty ||
+                          !RegExp("${Validator.emailPattern}")
+                              .hasMatch(value)) {
+                        return 'Enter a valid email!';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  const C20(color: Colors.amber,),
+                  SizedBox(
+                    width: double.infinity,
+                    child: AppPrimaryButton(
+                      text: Strings.sendOTP,
+                      onPressed: _resetPass,
+                    ),
+                  ),
+                  const C20(color: Colors.amber),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        child: Text(
+                          Strings.goBackToLogin,
+                        ),
+                        onTap: () {
+                          Get.to(() => LoginScreen());
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: Sizes.s10),
               child: Text(
                 Strings.poweredBy,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold, color: AppColors.greyText),
               ),
             ),

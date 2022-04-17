@@ -17,13 +17,17 @@ class AppDropdownButtonField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
+      validator: (value){
+        if(value == "Select Need type") return "Please select Need type";
+        return null;
+      },
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(10),
         ),
         filled: true,
@@ -36,7 +40,7 @@ class AppDropdownButtonField extends StatelessWidget {
           value: data,
           child: Text(
             data,
-            style: TextStyle(color: AppColors.black),
+            style: const TextStyle(color: AppColors.black),
             overflow: TextOverflow.ellipsis,
             //maxLines: maxLines,
             softWrap: true,

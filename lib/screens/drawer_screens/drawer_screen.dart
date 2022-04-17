@@ -15,50 +15,59 @@ class DrawerScreen extends StatelessWidget {
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.amber,
             ),
-            accountName: Text("Account Name"),
-            accountEmail: Text("Account Email"),
+            accountName: const Text("Account Name"),
+            accountEmail: const Text("Account Email"),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Theme.of(context).platform != TargetPlatform.iOS
                   ? Colors.blue
                   : Colors.white,
-              child: Text(
+              child: const Text(
                 "A",
                 style: TextStyle(fontSize: 40.0),
               ),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.person),
+            leading: const Icon(Icons.person),
             title: Text(Strings.viewProfile),
-            trailing: Icon(Icons.arrow_forward_ios_sharp),
+            trailing: const Icon(Icons.arrow_forward_ios_sharp),
             onTap: (){
               Get.back();
               Get.to(() => RegistrationScreen());
             }
           ),
           ListTile(
-            leading: Icon(Icons.people),
+              leading: const Icon(Icons.all_inclusive),
+              title: Text(Strings.myNeeds),
+              trailing: const Icon(Icons.arrow_forward_ios_sharp),
+              onTap: (){
+                Get.back();
+                Get.to(() => RegistrationScreen());
+              }
+          ),
+          ListTile(
+            leading: const Icon(Icons.people),
             title: Text(Strings.aboutUs),
-            trailing: Icon(Icons.arrow_forward_ios_sharp),
+            trailing: const Icon(Icons.arrow_forward_ios_sharp),
             onTap: () {
               Get.back();
-              Get.to(() => AboutUsScreen());
+              Get.to(() => const AboutUsScreen());
             } ,
           ),
           ListTile(
-            leading: Icon(Icons.call),
+            leading: const Icon(Icons.call),
             title: Text(Strings.contactUs),
-            trailing: Icon(Icons.arrow_forward_ios_sharp),
+            trailing: const Icon(Icons.arrow_forward_ios_sharp),
             onTap: () {
               Get.back();
-              Get.to(() => ContactUsScreen());
+              Get.to(() => const ContactUsScreen());
             },
           ),
           ListTile(
-            leading: Icon(Icons.login),
+            leading: const Icon(Icons.login),
             title: Text(Strings.logout),
             onTap: () {
               Get.back();
@@ -66,8 +75,8 @@ class DrawerScreen extends StatelessWidget {
             } ,
           ),
           ListTile(
-            leading: Icon(Icons.delete, color: Colors.red,),
-            title: Text(Strings.deleteAccount, style: TextStyle(color: Colors.red),),
+            leading: const Icon(Icons.delete, color: Colors.red,),
+            title: Text(Strings.deleteAccount, style: const TextStyle(color: Colors.red),),
             onTap: () {
               Get.back();
               Get.to(() => RegistrationScreen());

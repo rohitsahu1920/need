@@ -21,6 +21,12 @@ class AddNeedScreen extends StatelessWidget {
 
   AddNeedScreen({Key? key}) : super(key: key);
 
+  _addNeed() async{
+    if(!isFormValid(_formKey)) return;
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -86,7 +92,7 @@ class AddNeedScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   AppTextField(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.title,
                       color: Colors.black,
                     ),
@@ -103,7 +109,7 @@ class AddNeedScreen extends StatelessWidget {
                   C10(),
                   AppTextField(
                     maxLength: 100,
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.description,
                       color: Colors.black,
                     ),
@@ -125,22 +131,22 @@ class AddNeedScreen extends StatelessWidget {
                     },
                     value: _addNeedController.dropdownItems[0],
                   ),
-                  C10(),
-                  AppDropdownButtonField(
-                    items: _addNeedController.dropdownItems,
-                    onChange: (value) {
-                      _addNeedController.setCurrentSelectedValue(value);
-                    },
-                    value: _addNeedController.dropdownItems[0],
-                  ),
+                  // C10(),
+                  // AppDropdownButtonField(
+                  //   items: _addNeedController.dropdownItems,
+                  //   onChange: (value) {
+                  //     _addNeedController.setCurrentSelectedValue(value);
+                  //   },
+                  //   value: _addNeedController.dropdownItems[0],
+                  // ),
                   C10(),
                   AppTextField(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.phone_android,
                       color: Colors.black,
                     ),
                     hintText: Strings.mobileNumber,
-                    controller: _addNeedController.title,
+                    controller: _addNeedController.phoneNumber,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return Strings.addNeedTitleValidation;
@@ -151,12 +157,12 @@ class AddNeedScreen extends StatelessWidget {
                   ),
                   C10(),
                   AppTextField(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.map,
                       color: Colors.black,
                     ),
                     hintText: Strings.addressOne,
-                    controller: _addNeedController.title,
+                    controller: _addNeedController.addOne,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return Strings.addNeedTitleValidation;
@@ -167,12 +173,12 @@ class AddNeedScreen extends StatelessWidget {
                   ),
                   C10(),
                   AppTextField(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.map,
                       color: Colors.black,
                     ),
                     hintText: Strings.addressTwo,
-                    controller: _addNeedController.title,
+                    controller: _addNeedController.addTwo,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return Strings.addNeedTitleValidation;
@@ -183,12 +189,12 @@ class AddNeedScreen extends StatelessWidget {
                   ),
                   C10(),
                   AppTextField(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.pin_drop,
                       color: Colors.black,
                     ),
                     hintText: Strings.pinCode,
-                    controller: _addNeedController.title,
+                    controller: _addNeedController.pinCode,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return Strings.addNeedTitleValidation;
@@ -199,12 +205,12 @@ class AddNeedScreen extends StatelessWidget {
                   ),
                   C10(),
                   AppTextField(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.location_city,
                       color: Colors.black,
                     ),
                     hintText: Strings.city,
-                    controller: _addNeedController.title,
+                    controller: _addNeedController.city,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return Strings.addNeedTitleValidation;
@@ -218,7 +224,7 @@ class AddNeedScreen extends StatelessWidget {
                     width: double.infinity,
                     child: AppPrimaryButton(
                       text: Strings.submit,
-                      onPressed: () {},
+                      onPressed: _addNeed,
                     ),
                   ),
                 ],

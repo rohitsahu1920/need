@@ -47,10 +47,10 @@ class OTPVerifyScreen extends StatelessWidget {
                 key: _formKey,
                 child: ListView(
                   children: [
-                    C40(
+                    const C40(
                       color: Colors.amber,
                     ),
-                    Center(
+                    const Center(
                       child: Image(
                         image: AssetImage(Assets.login),
                         fit: BoxFit.contain,
@@ -58,7 +58,7 @@ class OTPVerifyScreen extends StatelessWidget {
                         height: 300,
                       ),
                     ),
-                    C40(
+                    const C40(
                       color: Colors.amber,
                     ),
                     Padding(
@@ -94,7 +94,7 @@ class OTPVerifyScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          C20(
+                          const C20(
                             color: Colors.amber,
                           ),
                           SizedBox(
@@ -104,7 +104,7 @@ class OTPVerifyScreen extends StatelessWidget {
                               onPressed: _verifyOTP,
                             ),
                           ),
-                          C20(color: Colors.amber),
+                          const C20(color: Colors.amber),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -129,7 +129,7 @@ class OTPVerifyScreen extends StatelessWidget {
               padding: EdgeInsets.only(bottom: Sizes.s10),
               child: Text(
                 Strings.poweredBy,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold, color: AppColors.greyText),
               ),
             ),

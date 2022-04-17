@@ -77,6 +77,7 @@ class Strings {
   static String get changePassword => 'changePassword'.tr;
   static String get passwordDoesNotMatch => 'passwordDoesNotMatch'.tr;
   static String get viewProfile => 'viewProfile'.tr;
+  static String get myNeeds => 'myNeeds'.tr;
   static String get contactUs => 'contactUs'.tr;
   static String get logout => 'logout'.tr;
   static String get deleteAccount => 'deleteAccount'.tr;
@@ -89,4 +90,6 @@ class Strings {
   static String get lastNameValidation => 'lastNameValidation'.tr;
   static String get phoneValidation => 'phoneValidation'.tr;
   static String get addressValidation => 'addressValidation'.tr;
+  static String get pinCodeValidation => 'pinCodeValidation'.tr;
+  static String get cityValidation => 'cityValidation'.tr;
 }

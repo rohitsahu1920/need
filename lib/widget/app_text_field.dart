@@ -35,16 +35,20 @@ class AppTextField extends StatelessWidget {
       maxLines: maxLines,
       validator: validator,
       controller: controller,
-      keyboardType: keyboardType != null ? keyboardType : TextInputType.text,
+      keyboardType: keyboardType ?? TextInputType.text,
       obscureText: passwordVisible ?? false,
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.red),
           borderRadius: BorderRadius.circular(10),
         ),
         filled: true,
