@@ -29,4 +29,14 @@ class LoginRepository {
 
     return ApiResponse.fromJson(response);
   }
+
+  Future<void> uploadImages() async{
+    final url = AppUrl.urlBase() + AppUrl.uploadImages;
+
+    Map<String, dynamic> response = await _apiClient.post(url, data: {});
+
+    log("Upload Image response :: $response");
+
+  }
+
 }

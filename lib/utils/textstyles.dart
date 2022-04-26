@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:need_flutter_app/res/app_colors.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
 
@@ -12,6 +13,16 @@ class FontFamily {
   static const String medium = "Sora-Medium";
   static const String semiBold = "Sora-SemiBold";
   static const String thin = "Sora-Thin";
+
+
+  static TextStyle mulishBold(double fontSize,Color color){
+    return GoogleFonts.mulish(
+      fontSize: fontSize,
+      fontWeight: FontWeight.w700,
+      color: color,
+      decoration: TextDecoration.none,);
+  }
+
 }
 
 class TextStyles {

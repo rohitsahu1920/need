@@ -16,6 +16,7 @@ import 'package:need_flutter_app/screens/login_and_registration%20_screen/login_
 import 'package:need_flutter_app/utils/auth/auth_manager.dart';
 import 'package:need_flutter_app/utils/common.dart';
 import 'package:need_flutter_app/utils/methods.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:unique_identifier/unique_identifier.dart';
 
 import '../../../app.dart';
@@ -95,35 +96,35 @@ class LoginController extends GetxController {
 
     Get.offAll(() => DashBoardScreen());
 
-    //var status = await Permission.location.status;
-    // try {
-    //   Get.dialog(
-    //     LoadingDialog(),
-    //     barrierDismissible: false,
-    //   );
-    //
-    //   LoginResponse loginResponse = await _loginRepository.login(
-    //       email: emailTextController.text, pass: passwordTextController.text);
-    //
-    //   _authManager.saveLoginData(loginResponse);
-    //
-    //   emailTextController.clear();
-    //   passwordTextController.clear();
-    //
-    //   if (loginResponse.status == '1') {
-    //     Get.offAll(() => DashBoardScreen());
-    //   } else {
-    //     Common.toast("${loginResponse.status}");
-    //     Get.back();
-    //   }
-    // } on DioError catch (e) {
-    //   Get.back();
-    //   Common.toast(e.response!.data["Dio Error"]);
-    // } catch (e) {
-    //   Common.toast(Strings.somethingWentWrong);
-    //   log("LoginController : loginApi Error : ${e.runtimeType} : ${e.toString()}");
-    //   Get.back();
-    //  }
+    var status = await Permission.location.status;
+    try {
+      Get.dialog(
+        LoadingDialog(),
+        barrierDismissible: false,
+      );
+
+      LoginResponse loginResponse = await _loginRepository.login(
+          email: emailTextController.text, pass: passwordTextController.text);
+
+      _authManager.saveLoginData(loginResponse);
+
+      emailTextController.clear();
+      passwordTextController.clear();
+
+      if (loginResponse.status == '1') {
+        Get.offAll(() => DashBoardScreen());
+      } else {
+        Common.toast("${loginResponse.status}");
+        Get.back();
+      }
+    } on DioError catch (e) {
+      Get.back();
+      Common.toast(e.response!.data["Dio Error"]);
+    } catch (e) {
+      Common.toast(Strings.somethingWentWrong);
+      log("LoginController : loginApi Error : ${e.runtimeType} : ${e.toString()}");
+      Get.back();
+     }
   }
 
   void registrationApi() async {
@@ -133,18 +134,23 @@ class LoginController extends GetxController {
     );
 
     try {
+
+      if(profileImage.isNotEmpty){
+        log("Upload Image will come here");
+      }
+
       Map data = {
-        APIKeys.userid: phoneNumber.text + firstName.text + lastName.text,
-        APIKeys.firstName: firstName.text,
-        APIKeys.lastName: lastName.text,
-        APIKeys.profile: profileImage.value,
-        APIKeys.email: email.text,
-        APIKeys.phone: phoneNumber.text,
-        APIKeys.addOne: addOne.text,
-        APIKeys.addTwo: addTwo.text,
-        APIKeys.pinCode: pinCode.text,
-        APIKeys.city: city.text,
-        APIKeys.state: state.text,
+        APIKeys.userid: phoneNumber.text.trim() + firstName.text.trim() + lastName.text.trim(),
+        APIKeys.firstName: firstName.text.trim(),
+        APIKeys.lastName: lastName.text.trim(),
+        APIKeys.profile: profileImage.value.trim(),
+        APIKeys.email: email.text.trim(),
+        APIKeys.phone: phoneNumber.text.trim(),
+        APIKeys.addOne: addOne.text.trim(),
+        APIKeys.addTwo: addTwo.text.trim(),
+        APIKeys.pinCode: pinCode.text.trim(),
+        APIKeys.city: city.text.trim(),
+        APIKeys.state: state.text.trim(),
         APIKeys.ip: await Ipify.ipv4(),
         APIKeys.iemi: kIsWeb ? "" : await UniqueIdentifier.serial,
         APIKeys.androidVersion: kIsWeb
@@ -152,7 +158,7 @@ class LoginController extends GetxController {
             : Platform.isAndroid
                 ? "Android"
                 : "IOS",
-        APIKeys.password: password.text,
+        APIKeys.password: password.text.trim(),
         APIKeys.isActive: "1",
         APIKeys.isEmailVerified: "0",
       };
@@ -163,12 +169,14 @@ class LoginController extends GetxController {
         Get.to(() => LoginScreen());
       }
       else{
-        log("Something went Wrong");
+        //Common.showCustomToast(Get.context, "Something went wrong", Colors.red);
       }
 
     } on DioError catch (e) {
       Get.back();
-      Common.toast(e.response!.data["Dio Error"]);
+      //Common.showCustomToast(Get.context, "Something went wrong", Colors.red);
+      //Common.toast(e.response!.data["Dio Error"]);
+      log("LoginController : registration Error :: Dio :: ${e.toString()}");
     } catch (e) {
       Common.toast(Strings.somethingWentWrong);
       log("LoginController : registration Error : ${e.runtimeType} : ${e.toString()}");

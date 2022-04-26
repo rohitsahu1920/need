@@ -52,7 +52,6 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     C10(),
                     const Center(
-                      heightFactor: 3,
                       child: Image(
                         image: AssetImage(Assets.login),
                         fit: BoxFit.contain,
@@ -60,87 +59,87 @@ class LoginScreen extends StatelessWidget {
                         height: 200,
                       ),
                     ),
-                    const Spacer(),
-                    Padding(
-                      padding: EdgeInsets.all(Sizes.s15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          AppTextField(
-                            hintText: Strings.email,
-                            controller: _loginController.emailTextController,
-                            validator: (value) {
-                              if (value!.isEmpty ||
-                                  !RegExp("${Validator.emailPattern}")
-                                      .hasMatch(value)) {
-                                return 'Enter a valid email!';
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.emailAddress,
-                          ),
-                          C10(),
-                          GetBuilder<LoginController>(
-                            builder: (controller) {
-                              return AppTextField(
-                                maxLines: 1,
-                                controller:
-                                _loginController.passwordTextController,
-                                hintText: Strings.password,
-                                passwordVisible: controller.passwordVisibleLogin,
-                                validator: (value) {
-                                  if (value!.isEmpty) return Strings.passValidation;
-                                  return null;
-                                },
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    controller.passwordVisibleLogin
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.black,
-                                  ),
-                                  onPressed: controller.toggleVisibleLoginPassword,
-                                ),
-                              );
-                            },
-                          ),
-                          C10(),
-                          GestureDetector(
-                            child: Text(
-                              Strings.forgotPass,
-                              textAlign: TextAlign.end,
-                            ),
-                            onTap: () {
-                              Get.to(() => ConfirmPasswordScreen());
-                            },
-                          ),
-                          C10(),
-                          SizedBox(
-                            width: double.infinity,
-                            child: AppPrimaryButton(
-                              text: Strings.signIn,
-                              onPressed: _login,
-                            ),
-                          ),
-                          const C20(color: Colors.amber),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              GestureDetector(
-                                child: Text(
-                                  Strings.newUserRegister,
-                                ),
-                                  onTap: () {
-                                    Get.to(() => RegistrationScreen());
-                                  },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
+              ),
+            ),
+            //const Spacer(),
+            Padding(
+              padding: EdgeInsets.all(Sizes.s15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  AppTextField(
+                    hintText: Strings.email,
+                    controller: _loginController.emailTextController,
+                    validator: (value) {
+                      if (value!.isEmpty ||
+                          !RegExp("${Validator.emailPattern}")
+                              .hasMatch(value)) {
+                        return 'Enter a valid email!';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  C10(),
+                  GetBuilder<LoginController>(
+                    builder: (controller) {
+                      return AppTextField(
+                        maxLines: 1,
+                        controller:
+                        _loginController.passwordTextController,
+                        hintText: Strings.password,
+                        passwordVisible: controller.passwordVisibleLogin,
+                        validator: (value) {
+                          if (value!.isEmpty) return Strings.passValidation;
+                          return null;
+                        },
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            controller.passwordVisibleLogin
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.black,
+                          ),
+                          onPressed: controller.toggleVisibleLoginPassword,
+                        ),
+                      );
+                    },
+                  ),
+                  C10(),
+                  GestureDetector(
+                    child: Text(
+                      Strings.forgotPass,
+                      textAlign: TextAlign.end,
+                    ),
+                    onTap: () {
+                      Get.to(() => ConfirmPasswordScreen());
+                    },
+                  ),
+                  C10(),
+                  SizedBox(
+                    width: double.infinity,
+                    child: AppPrimaryButton(
+                      text: Strings.signIn,
+                      onPressed: _login,
+                    ),
+                  ),
+                  const C20(color: Colors.amber),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        child: Text(
+                          Strings.newUserRegister,
+                        ),
+                        onTap: () {
+                          Get.to(() => RegistrationScreen());
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
             Padding(
