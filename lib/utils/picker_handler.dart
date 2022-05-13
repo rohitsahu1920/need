@@ -8,7 +8,7 @@ class PickerHandler {
 
   Future<String> pickImageFromGallery() async {
     try {
-      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+      final XFile? image = await _picker.pickImage(source: ImageSource.gallery,imageQuality: 30);
       if (image != null) {
         return image.path;
       } else {
@@ -22,7 +22,7 @@ class PickerHandler {
 
   Future<String> pickImageFromCamera() async {
     try {
-      final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+      final XFile? image = await _picker.pickImage(source: ImageSource.camera,imageQuality: 30);
       if (image != null) {
         log("Under Camera picker :: ${image.path}");
         return image.path;

@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:need_flutter_app/dialogs/loading_dialog.dart';
+import 'package:need_flutter_app/models/Status.dart';
 import 'package:need_flutter_app/models/api_response.dart';
 import 'package:need_flutter_app/models/login_response.dart';
 import 'package:need_flutter_app/repository/login_repository.dart';
@@ -22,8 +23,8 @@ import 'package:unique_identifier/unique_identifier.dart';
 import '../../../app.dart';
 
 class LoginController extends GetxController {
-  LoginRepository _loginRepository = Get.put(LoginRepository());
-  AuthManager _authManager = Get.find();
+  final LoginRepository _loginRepository = Get.put(LoginRepository());
+  final AuthManager _authManager = Get.find();
 
   late TextEditingController firstName = TextEditingController();
   late TextEditingController lastName = TextEditingController();
@@ -81,6 +82,13 @@ class LoginController extends GetxController {
     update();
   }
 
+  var imageTwo = "".obs;
+
+  setImageTwo(String value) {
+    imageTwo.value = value;
+    update();
+  }
+
   @override
   void onInit() {
     emailTextController = TextEditingController(
@@ -93,8 +101,7 @@ class LoginController extends GetxController {
   }
 
   void loginApi() async {
-
-    Get.offAll(() => DashBoardScreen());
+    //Get.offAll(() => DashBoardScreen());
 
     var status = await Permission.location.status;
     try {
@@ -106,13 +113,14 @@ class LoginController extends GetxController {
       LoginResponse loginResponse = await _loginRepository.login(
           email: emailTextController.text, pass: passwordTextController.text);
 
-      _authManager.saveLoginData(loginResponse);
 
       emailTextController.clear();
       passwordTextController.clear();
 
       if (loginResponse.status == '1') {
+        _authManager.saveLoginData(loginResponse);
         Get.offAll(() => DashBoardScreen());
+        Get.back();
       } else {
         Common.toast("${loginResponse.status}");
         Get.back();
@@ -124,7 +132,26 @@ class LoginController extends GetxController {
       Common.toast(Strings.somethingWentWrong);
       log("LoginController : loginApi Error : ${e.runtimeType} : ${e.toString()}");
       Get.back();
-     }
+    }
+  }
+
+  void uploadImages() async {
+    Get.dialog(
+      LoadingDialog(),
+      barrierDismissible: false,
+    );
+
+    try {
+      ApiResponse apiResponse = await _loginRepository.upload(
+          "testing7738877684.png", imageTwo.value);
+    } on DioError catch (e) {
+      Get.back();
+      log("Upload Image Dio error :: $e");
+      //Common.toast(e.response!.data["Dio Error"]);
+    } catch (e) {
+      Get.back();
+      log("Upload Images catch :: ${e.toString()}");
+    }
   }
 
   void registrationApi() async {
@@ -134,16 +161,18 @@ class LoginController extends GetxController {
     );
 
     try {
-
-      if(profileImage.isNotEmpty){
+      if (profileImage.isNotEmpty) {
         log("Upload Image will come here");
       }
 
       Map data = {
-        APIKeys.userid: phoneNumber.text.trim() + firstName.text.trim() + lastName.text.trim(),
+        APIKeys.userid: phoneNumber.text.trim() +
+            firstName.text.trim() +
+            lastName.text.trim(),
         APIKeys.firstName: firstName.text.trim(),
         APIKeys.lastName: lastName.text.trim(),
-        APIKeys.profile: profileImage.value.trim(),
+        APIKeys.profile:
+            "${phoneNumber.text.trim()}_${firstName.text.trim()}_${lastName.text.trim()}.png",
         APIKeys.email: email.text.trim(),
         APIKeys.phone: phoneNumber.text.trim(),
         APIKeys.addOne: addOne.text.trim(),
@@ -165,13 +194,18 @@ class LoginController extends GetxController {
 
       ApiResponse apiResponse = await _loginRepository.registration(data);
 
-      if(apiResponse.status == "1"){
+      if (apiResponse.status == "1") {
+        if (profileImage.value.isNotEmpty) {
+          ApiResponse apiResponse = await _loginRepository.upload(
+              "${phoneNumber.text.trim()}_${firstName.text.trim()}_${lastName.text.trim()}.png",
+              profileImage.value);
+          Get.back();
+        }
+
         Get.to(() => LoginScreen());
-      }
-      else{
+      } else {
         //Common.showCustomToast(Get.context, "Something went wrong", Colors.red);
       }
-
     } on DioError catch (e) {
       Get.back();
       //Common.showCustomToast(Get.context, "Something went wrong", Colors.red);

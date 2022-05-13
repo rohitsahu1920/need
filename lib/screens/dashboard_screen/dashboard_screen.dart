@@ -19,8 +19,8 @@ import '../show_all_screens/widget/see_all_widget.dart';
 ///Created by Rohit Sahu on 29-09-2021
 
 class DashBoardScreen extends StatelessWidget {
-
   final _dashboardController = Get.put(DashBoardController());
+
   DashBoardScreen({Key? key}) : super(key: key);
 
   @override
@@ -48,7 +48,7 @@ class DashBoardScreen extends StatelessWidget {
           actions: [],
         ),
         body: _body(),
-        drawer: const DrawerScreen(),
+        drawer: DrawerScreen(),
         floatingActionButton: FloatingActionButton.extended(
             elevation: 0.0,
             icon: const Icon(
@@ -58,10 +58,11 @@ class DashBoardScreen extends StatelessWidget {
             backgroundColor: Colors.amber,
             label: Text(
               Strings.addNeed,
-              style: TextStyle(fontSize: 12.0, color: Colors.black),
+              style: const TextStyle(fontSize: 12.0, color: Colors.black),
             ),
             onPressed: () {
-              Get.to(() => AddNeedScreen());
+              _dashboardController.print();
+              //Get.to(() => AddNeedScreen());
             }),
       ),
     );
@@ -83,7 +84,11 @@ class DashBoardScreen extends StatelessWidget {
                   autoPlayAnimationDuration: const Duration(milliseconds: 800),
                   autoPlayCurve: Curves.easeInQuad,
                 ),
-                items: [1, 2, 3,].map((i) {
+                items: [
+                  1,
+                  2,
+                  3,
+                ].map((i) {
                   return Builder(
                     builder: (BuildContext context) {
                       return Container(
@@ -97,7 +102,10 @@ class DashBoardScreen extends StatelessWidget {
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(20))),
                           child: Center(
-                            child: Image.asset(_dashboardController.imageList[i-1], fit: BoxFit.cover,),
+                            child: Image.asset(
+                              _dashboardController.imageList[i - 1],
+                              fit: BoxFit.cover,
+                            ),
                           ));
                     },
                   );
@@ -126,15 +134,20 @@ class DashBoardScreen extends StatelessWidget {
                       ],
                     ),
                     InkWell(
-                        onTap: () => Get.to(() => NeedInDetailScreen()), child: SeeAllWidget()),
+                        onTap: () => Get.to(() => NeedInDetailScreen()),
+                        child: SeeAllWidget()),
                     InkWell(
-                        onTap: () => Get.to(() => NeedInDetailScreen()), child: SeeAllWidget()),
+                        onTap: () => Get.to(() => NeedInDetailScreen()),
+                        child: SeeAllWidget()),
                     InkWell(
-                        onTap: () => Get.to(() => NeedInDetailScreen()), child: SeeAllWidget()),
+                        onTap: () => Get.to(() => NeedInDetailScreen()),
+                        child: SeeAllWidget()),
                     InkWell(
-                        onTap: () => Get.to(() => NeedInDetailScreen()), child: SeeAllWidget()),
+                        onTap: () => Get.to(() => NeedInDetailScreen()),
+                        child: SeeAllWidget()),
                     InkWell(
-                        onTap: () => Get.to(() => NeedInDetailScreen()), child: SeeAllWidget())
+                        onTap: () => Get.to(() => NeedInDetailScreen()),
+                        child: SeeAllWidget())
                   ],
                 ),
               ),

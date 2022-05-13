@@ -15,6 +15,7 @@ import 'package:need_flutter_app/widget/app_primary_button.dart';
 import 'package:need_flutter_app/widget/app_text_field.dart';
 import 'package:need_flutter_app/widget/appbar_without_back.dart';
 
+import '../../utils/picker_handler.dart';
 import 'controller/login_controller.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -29,6 +30,16 @@ class LoginScreen extends StatelessWidget {
     if (!isFormValid(_formKey)) return;
 
     _loginController.loginApi();
+  }
+
+  _selectImage() async{
+    _loginController.setImageTwo(
+        await PickerHandler().pickImageFromGallery());
+    log("Image One :: ${_loginController.imageTwo}");
+  }
+
+  uploadImage() async{
+    _loginController.uploadImages();
   }
 
   @override

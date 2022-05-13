@@ -40,4 +40,9 @@ class APIKeys{
   static String get strike => 'strick';
   static String get report => 'report';
 
+  //Upload Images
+  static String get name => 'Name';
+  static String get image => 'Image';
+  static String get contentType => 'Content-Type';
+
 }

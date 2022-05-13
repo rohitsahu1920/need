@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:need_flutter_app/network/urls.dart';
 import 'package:need_flutter_app/res/strings.dart';
 import 'package:need_flutter_app/screens/drawer_screens/about_us_screen.dart';
 import 'package:need_flutter_app/screens/drawer_screens/contact_us_screen.dart';
 import 'package:need_flutter_app/screens/login_and_registration%20_screen/registration_screen.dart';
 
+import '../../utils/auth/auth_manager.dart';
+import '../dashboard_screen/controller/dashboard_controller.dart';
+
 class DrawerScreen extends StatelessWidget {
-  const DrawerScreen({Key? key}) : super(key: key);
+  DrawerScreen({Key? key}) : super(key: key);
+  final AuthManager _authManager = Get.find();
+  final _dashboardController = Get.put(DashBoardController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +24,13 @@ class DrawerScreen extends StatelessWidget {
             decoration: const BoxDecoration(
               color: Colors.amber,
             ),
-            accountName: const Text("Account Name"),
-            accountEmail: const Text("Account Email"),
+            accountName: Text("${_authManager.getLoginData()?.firstName} ${_authManager.getLoginData()?.lastName}"),
+            accountEmail: Text("${_authManager.getLoginData()?.email}"),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Theme.of(context).platform != TargetPlatform.iOS
                   ? Colors.blue
                   : Colors.white,
-              child: const Text(
-                "A",
-                style: TextStyle(fontSize: 40.0),
-              ),
+              child: Image.network(_dashboardController.profileLink),
             ),
           ),
           ListTile(
