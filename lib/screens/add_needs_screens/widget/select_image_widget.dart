@@ -7,7 +7,7 @@ class SelectImagesWidget extends StatelessWidget {
   final Function onTap;
   final String imagePath;
 
-  SelectImagesWidget(
+  const SelectImagesWidget(
       {required this.title,
       required this.onTap,
       required this.imagePath,
@@ -36,7 +36,7 @@ class SelectImagesWidget extends StatelessWidget {
                         width: 100,
                         child: imagePath.isNotEmpty
                             ? Image.file(File(imagePath))
-                            : Icon(
+                            : const Icon(
                                 Icons.add_a_photo_rounded,
                                 size: 32,
                                 color: Colors.black,

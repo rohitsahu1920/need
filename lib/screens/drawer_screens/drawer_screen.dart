@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:need_flutter_app/network/urls.dart';
 import 'package:need_flutter_app/res/strings.dart';
 import 'package:need_flutter_app/screens/drawer_screens/about_us_screen.dart';
 import 'package:need_flutter_app/screens/drawer_screens/contact_us_screen.dart';
@@ -30,7 +29,8 @@ class DrawerScreen extends StatelessWidget {
               backgroundColor: Theme.of(context).platform != TargetPlatform.iOS
                   ? Colors.blue
                   : Colors.white,
-              child: Image.network(_dashboardController.profileLink),
+              backgroundImage: NetworkImage(_dashboardController.profileLink),
+              //child: Image.network(_dashboardController.profileLink,fit: BoxFit.cover),
             ),
           ),
           ListTile(

@@ -62,6 +62,7 @@ class RegistrationScreen extends StatelessWidget {
                                       onTap: () => _showPicker(context),
                                       child: Column(
                                         children: [
+
                                           Card(
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -69,27 +70,27 @@ class RegistrationScreen extends StatelessWidget {
                                             ),
                                             margin: const EdgeInsets.symmetric(
                                                 vertical: 5, horizontal: 5),
-                                            child: Padding(
-                                                padding: const EdgeInsets.all(
-                                                    15.0),
-                                                child: SizedBox(
-                                                  height: 100,
-                                                  width: 100,
-                                                  child: _loginController
-                                                      .profileImage
-                                                      .value
-                                                      .isNotEmpty
-                                                      ? Image.file(
-                                                    File(_loginController
-                                                        .profileImage.value),
-                                                    fit: BoxFit.fill,
-                                                  )
-                                                      : const Icon(
-                                                    Icons.person_rounded,
-                                                    size: 32,
-                                                    color: Colors.black,
-                                                  ),
-                                                )),
+                                            child: SizedBox(
+                                              height: 100,
+                                              width: 100,
+                                              child: _loginController
+                                                  .profileImage
+                                                  .value
+                                                  .isNotEmpty
+                                                  ? CircleAvatar(
+                                                radius: 50,
+                                                backgroundImage: Image.file(
+                                                  File(_loginController
+                                                      .profileImage.value),
+                                                  fit: BoxFit.fill,
+                                                ).image,
+                                              )
+                                                  : const Icon(
+                                                Icons.person_rounded,
+                                                size: 32,
+                                                color: Colors.black,
+                                              ),
+                                            ),
                                           ),
                                           const SizedBox(
                                             height: 10,
