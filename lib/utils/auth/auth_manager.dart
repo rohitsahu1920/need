@@ -35,6 +35,8 @@ class AuthManager {
     }
   }
 
+
+
   Future<void> logoutUser() async {
     Get.dialog(LoadingDialog());
     await _prefs.remove(SPKeys.loginUserData.toString());

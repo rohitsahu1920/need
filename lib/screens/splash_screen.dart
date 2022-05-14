@@ -5,9 +5,11 @@ import 'package:get/get.dart';
 import 'package:need_flutter_app/mixins/after_layout.dart';
 import 'package:need_flutter_app/network/api_client.dart';
 import 'package:need_flutter_app/res/app_constants.dart';
+import 'package:need_flutter_app/screens/dashboard_screen/dashboard_screen.dart';
 import 'package:need_flutter_app/screens/login_and_registration%20_screen/login_screen.dart';
 import 'package:need_flutter_app/utils/assets.dart';
 import 'package:need_flutter_app/utils/auth/auth_manager.dart';
+import 'package:need_flutter_app/utils/methods.dart';
 import 'package:need_flutter_app/utils/shared_pref_manager/sp_keys.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -27,8 +29,8 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<SplashScreen>{
-
+class _SplashScreenState extends State<SplashScreen>
+    with AfterLayoutMixin<SplashScreen> {
   @override
   Future<void> afterFirstLayout(BuildContext context) async {
     await _setupDependency();
@@ -40,16 +42,15 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
     return Timer(splashDuration, () async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       if (preferences.getBool(SPKeys.isFirst.value) ?? true) {
-        Get.offAll(() => IntroScreen());
+        Get.offAll(() => const IntroScreen());
       } else {
-        Get.offAll(() => LoginScreen());
-        //_checkForPermissions();
+        //Get.offAll(() => LoginScreen());
+        _checkForPermissions();
       }
     });
   }
 
   _setupDependency() async {
-
     SharedPreferences preferences = await SharedPreferences.getInstance();
     Get.put(preferences);
     Get.put(APIClient());
@@ -68,11 +69,19 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
     bool storageStatus = await Permission.storage.status.isGranted;
     bool location = await Permission.location.status.isGranted;
 
-    if (storageStatus &&
-        location) {
-      Get.offAll(() => LoginScreen());
+    if (storageStatus && location) {
+      //Get.offAll(() => LoginScreen());
+
+      log("Status :: ${Get.find<AuthManager>().getLoginData()?.status}");
+
+      if (Get.find<AuthManager>().getLoginData()?.status != "0" &&
+          Get.find<AuthManager>().getLoginData()?.status != null) {
+        Get.offAll(() => DashBoardScreen());
+      } else {
+        Get.offAll(() => LoginScreen());
+      }
     } else {
-      Get.offAll(() => AccessScreen());
+      Get.offAll(() => const AccessScreen());
     }
   }
 
@@ -89,4 +98,3 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
     );
   }
 }
-

@@ -15,6 +15,8 @@ import 'package:need_flutter_app/widget/custom_appbar.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class AccessScreen extends StatelessWidget {
+  const AccessScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,20 +32,20 @@ class AccessScreen extends StatelessWidget {
         padding: EdgeInsets.all(Sizes.s20),
         child: Column(
           children: [
-            Divider(),
+            const Divider(),
             AccessItemWidget(
               icon: Assets.storage,
               title: Strings.storage,
               subtitle: Strings.storagePermission,
             ),
-            Divider(),
+            const Divider(),
             AccessItemWidget(
               icon: Assets.locationMarkerBlack,
               title: Strings.location,
               subtitle: Strings.locationPermission,
             ),
-            Divider(),
-            Spacer(),
+            const Divider(),
+            const Spacer(),
             SizedBox(
               width: double.infinity,
               child: AppPrimaryButton(
@@ -51,7 +53,7 @@ class AccessScreen extends StatelessWidget {
                 onPressed: () => _checkPermission(),
               ),
             ),
-            C20(),
+            const C20(),
             InkWell(
               onTap: () {
                 Get.offAll(() => LoginScreen());
@@ -85,7 +87,7 @@ class AccessScreen extends StatelessWidget {
     bool allGranted = true;
 
     statuses.forEach((key, value) {
-      if (!value.isGranted) {
+      if (value.isDenied || !value.isLimited) {
         allGranted = false;
       }
     });
