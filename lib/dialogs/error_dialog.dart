@@ -60,7 +60,7 @@ class ErrorDialog extends StatelessWidget {
                               text: Strings.retry,
                               onTap: () {
                                 if (restartApp) {
-                                  Get.off(() => SplashScreen());
+                                  Get.off(() => const SplashScreen());
                                 } else {
                                   Get.back();
                                 }
@@ -68,7 +68,7 @@ class ErrorDialog extends StatelessWidget {
                             ),
                           ],
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
                 ],
               ),
             ),

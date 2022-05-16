@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:need_flutter_app/res/strings.dart';
 import 'package:need_flutter_app/utils/common.dart';
@@ -56,32 +55,35 @@ class APIClient {
     FormData? formData,
   }) async {
     log("Before API URL :: $path");
-    log("Before API Header :: $headers");
     log("Request :: $data");
     //log("API POST Data ${jsonEncode(data)}");
-    log("API POST Form Data ${formData?.files.toString()}");
     Map<String, dynamic> responseData = {};
 
+    log("Checking :: ${data ?? formData}");
+    log("Checking :: ${headers ?? _requestHeaders()}");
+
     try {
+      log("Under try method ::");
       Response response = await _dio.post(
         Uri.encodeFull(path),
-        data: data ?? formData,
+        data: formData ?? data,
         options: Options(
           headers: headers ?? _requestHeaders(),
         ),
       );
+      log("After post method ::");
       log("$response");
 
       log("After API URL $path");
       responseData = response.data;
     } on DioError catch (e) {
-      if (e.response!.statusCode == 401) {
+      if (e.response?.statusCode == 401) {
         log("unauthorized");
         Common.toast(Strings.loginAgain);
-      } else if (e.response!.statusCode == 400) {
-        Common.toast(e.response!.data["msg"]);
-      } else if (e.response!.statusCode == 415) {
-        log("Under post Method of api client of 415 :: ${e.response!.data["msg"]}");
+      } else if (e.response?.statusCode == 400) {
+        Common.toast("${e.response?.data["msg"]}");
+      } else if (e.response?.statusCode == 415) {
+        log("Under post Method of api client of 415 :: ${e.response?.data["msg"]}");
       } else {
         log("Under post Method of api client :: $e");
         rethrow;

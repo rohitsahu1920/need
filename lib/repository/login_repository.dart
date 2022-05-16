@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:need_flutter_app/utils/methods.dart';
 import 'package:dio/dio.dart' as d;
-import '../models/Status.dart';
 import '../models/api_response.dart';
 import '../models/login_response.dart';
 import '../network/api_client.dart';

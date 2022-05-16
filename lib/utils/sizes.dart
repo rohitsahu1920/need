@@ -173,8 +173,8 @@ class Sizes {
     }
 
     ScreenUtil.init(
-      constraints,
-      designSize: Size(360, 690),
+      context,
+      designSize: const Size(360, 690),
     );
     FontSizes.initScreenAwareFontSize();
   }

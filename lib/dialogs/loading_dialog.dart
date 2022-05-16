@@ -5,6 +5,8 @@ import 'package:need_flutter_app/utils/ui_helper.dart';
 import 'package:need_flutter_app/widget/loader/double_bounce.dart';
 
 class LoadingDialog extends StatelessWidget {
+  const LoadingDialog({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

@@ -43,7 +43,7 @@ android {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.flutter.need.need"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 32
         multiDexEnabled true
         versionCode 3
         versionName '1.3'

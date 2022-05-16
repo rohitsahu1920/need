@@ -24,6 +24,7 @@ class AddNeedScreen extends StatelessWidget {
   _addNeed() async{
     if(!isFormValid(_formKey)) return;
 
+    _addNeedController.addNeedAPI();
 
   }
 
@@ -127,7 +128,7 @@ class AddNeedScreen extends StatelessWidget {
                   AppDropdownButtonField(
                     items: _addNeedController.dropdownItems,
                     onChange: (value) {
-                      _addNeedController.setCurrentSelectedValue(value);
+                      _addNeedController.setCurrentSelectedValue(value!);
                     },
                     value: _addNeedController.dropdownItems[0],
                   ),

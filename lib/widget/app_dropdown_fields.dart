@@ -5,7 +5,7 @@ import 'package:need_flutter_app/res/app_colors.dart';
 class AppDropdownButtonField extends StatelessWidget {
   final String value;
   final List<String> items;
-  final Function(String) onChange;
+  final Function(String?) onChange;
 
   const AppDropdownButtonField({
     Key? key,
@@ -47,7 +47,7 @@ class AppDropdownButtonField extends StatelessWidget {
           ),
         );
       }).toList(),
-      onChanged: (value) => onChange,
+      onChanged: onChange,
     );
   }
 }
