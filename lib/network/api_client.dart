@@ -31,7 +31,6 @@ class APIClient {
       );
 
       log("ok    $response");
-      log("ok    $response");
       responseData = response.data;
     } on DioError catch (e) {
       if (e.response == null) rethrow;

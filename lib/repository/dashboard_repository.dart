@@ -1,5 +1,9 @@
 
 
+import 'dart:async';
+
+import 'package:need_flutter_app/models/getdahsoboard_model.dart';
+
 import '../models/api_response.dart';
 import '../network/api_client.dart';
 import 'package:get/get.dart';
@@ -18,6 +22,17 @@ class DashboardRepository {
     log(response.toString());
 
     return ApiResponse.fromJson(response);
+  }
+
+
+  Future<GetDashBoardModel> getDashboardDetails() async{
+
+    final url = AppUrl.urlBase() + AppUrl.getDashboard;
+
+    Map<String,dynamic> response = await _apiClient.get(url);
+
+    return GetDashBoardModel.fromJson(response);
+
   }
 
 
