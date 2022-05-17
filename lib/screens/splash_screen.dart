@@ -16,6 +16,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'access_screen/access_screen.dart';
+import 'dashboard_screen/controller/dashboard_controller.dart';
 import 'intro_screens/intro_screen.dart';
 
 ///Created by Rohit Sahu on 17-09-2021
@@ -55,6 +56,7 @@ class _SplashScreenState extends State<SplashScreen>
     Get.put(preferences);
     Get.put(APIClient());
     Get.put(AuthManager());
+    //Get.put(DashBoardController());
 
     //set language
 
@@ -68,7 +70,6 @@ class _SplashScreenState extends State<SplashScreen>
   _checkForPermissions() async {
     bool storageStatus = await Permission.storage.status.isGranted;
     bool location = await Permission.location.status.isGranted;
-
     if (storageStatus && location) {
       //Get.offAll(() => LoginScreen());
 
@@ -76,6 +77,7 @@ class _SplashScreenState extends State<SplashScreen>
 
       if (Get.find<AuthManager>().getLoginData()?.status != "0" &&
           Get.find<AuthManager>().getLoginData()?.status != null) {
+
         Get.offAll(() => DashBoardScreen());
       } else {
         Get.offAll(() => LoginScreen());

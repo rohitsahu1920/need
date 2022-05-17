@@ -21,10 +21,12 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:unique_identifier/unique_identifier.dart';
 
 import '../../../app.dart';
+import '../../dashboard_screen/controller/dashboard_controller.dart';
 
 class LoginController extends GetxController {
   final LoginRepository _loginRepository = Get.put(LoginRepository());
   final AuthManager _authManager = Get.find();
+  final _dashboardController = Get.put(DashBoardController());
 
   late TextEditingController firstName = TextEditingController();
   late TextEditingController lastName = TextEditingController();
@@ -119,6 +121,9 @@ class LoginController extends GetxController {
 
       if (loginResponse.status == '1') {
         _authManager.saveLoginData(loginResponse);
+
+        await _dashboardController.getDashboardDetails();
+
         Get.offAll(() => DashBoardScreen());
         Get.back();
       } else {

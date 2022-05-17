@@ -2,7 +2,7 @@
 
 class AppUrl {
   static String urlBase() {
-    return "http://13.233.79.115/api/";
+    return "http://15.206.186.18/api/";
   }
 
   static String get awsImageLink => "https://needbucket.s3.ap-south-1.amazonaws.com/";

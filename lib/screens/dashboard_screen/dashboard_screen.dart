@@ -13,6 +13,7 @@ import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:need_flutter_app/utils/textstyles.dart';
 import 'package:need_flutter_app/widget/appbar_without_back.dart';
 
+import '../../widget/app_error_widget.dart';
 import '../need_in_detail_screen/need_in_detail_screen.dart';
 import '../show_all_screens/widget/see_all_widget.dart';
 
@@ -47,7 +48,22 @@ class DashBoardScreen extends StatelessWidget {
           textStyle: TextStyles.appBarTittle,
           actions: [],
         ),
-        body: _body(),
+        body: GetX<DashBoardController>(
+          initState: (state) async {
+            WidgetsBinding.instance?.addPostFrameCallback((_) async{
+              await _dashboardController.getDashboardDetails();
+              state.build(context);
+            });
+          },
+          builder: (controller){
+            if(_dashboardController.hasError.value){
+              return AppErrorWidget(
+                errorMessage: _dashboardController.errorMessage.value,
+              );
+            }
+            return _body();
+          },
+        ),
         drawer: DrawerScreen(),
         floatingActionButton: FloatingActionButton.extended(
             elevation: 0.0,
@@ -122,7 +138,7 @@ class DashBoardScreen extends StatelessWidget {
                           Strings.dashBoardTitle,
                           style: TextStyles.dialog,
                         ),
-                        Spacer(),
+                        const Spacer(),
                         InkWell(
                             onTap: () {
                               Get.to(() => SeeAllScreen());
@@ -158,7 +174,7 @@ class DashBoardScreen extends StatelessWidget {
           padding: EdgeInsets.only(bottom: Sizes.s15),
           child: Text(
             Strings.poweredBy,
-            style: TextStyle(
+            style: const TextStyle(
                 fontWeight: FontWeight.bold, color: AppColors.greyText),
           ),
         ),

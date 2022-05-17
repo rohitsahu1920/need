@@ -14,6 +14,9 @@ import 'package:need_flutter_app/widget/app_primary_button.dart';
 import 'package:need_flutter_app/widget/custom_appbar.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../utils/auth/auth_manager.dart';
+import '../dashboard_screen/dashboard_screen.dart';
+
 class AccessScreen extends StatelessWidget {
   const AccessScreen({Key? key}) : super(key: key);
 
@@ -56,7 +59,12 @@ class AccessScreen extends StatelessWidget {
             const C20(),
             InkWell(
               onTap: () {
-                Get.offAll(() => LoginScreen());
+                if (Get.find<AuthManager>().getLoginData()?.status != "0" &&
+                    Get.find<AuthManager>().getLoginData()?.status != null) {
+                  Get.offAll(() => DashBoardScreen());
+                } else {
+                  Get.offAll(() => LoginScreen());
+                }
               },
               child: Center(
                 child: Text(Strings.skip),
