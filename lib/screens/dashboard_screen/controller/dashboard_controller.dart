@@ -25,20 +25,18 @@ class DashBoardController extends GetxController with StateMixin{
 
   List<String> imageList = [Assets.donation1,Assets.donation2,Assets.donation3];
 
-
-
   String profileLink = "";
 
   @override
   void onInit() async{
     String profile = _authManager.getLoginData()?.profile ?? "";
     profileLink = AppUrl.awsImageLink+profile;
-    //await getDashboardDetails();
-
+    update();
     super.onInit();
   }
 
   GetDashBoardModel getDashBoardModel = GetDashBoardModel();
+
 
   Future<void> getDashboardDetails() async {
     Get.dialog(
@@ -53,6 +51,7 @@ class DashBoardController extends GetxController with StateMixin{
      if(getDashBoardModel.status == "1"){
        Get.back();
        log("getDashboardDetails successfully fetched");
+       log("${getDashBoardModel.productOutputs?.length}");
        Common.toast("Success");
      }else{
        Get.back();
@@ -65,7 +64,6 @@ class DashBoardController extends GetxController with StateMixin{
       log("Under GetDashBoardDetails catch :: $e");
       Common.toast("Something went wrong");
     }
-
 
   }
 

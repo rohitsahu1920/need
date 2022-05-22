@@ -11,6 +11,7 @@ import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:need_flutter_app/utils/textstyles.dart';
 import 'package:need_flutter_app/utils/ui_helper.dart';
 import 'package:need_flutter_app/widget/app_primary_button.dart';
+import 'package:need_flutter_app/widget/appbar_without_back.dart';
 import 'package:need_flutter_app/widget/custom_appbar.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -23,12 +24,11 @@ class AccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarCustom(
+      appBar: appBarWithoutBack(
         title: Strings.needAccess,
         textStyle: TextStyles.appBarTittle.copyWith(
           fontFamily: FontFamily.semiBold,
         ),
-        onBackTap: () {},
         actions: [],
       ),
       body: Container(

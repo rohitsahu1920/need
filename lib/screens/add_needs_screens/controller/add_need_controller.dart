@@ -144,6 +144,10 @@ class AddNeedController extends GetxController {
             APIKeys.report: "",
             APIKeys.userid: _authManager.getLoginData()?.userid,
             APIKeys.email: _authManager.getLoginData()?.email,
+            APIKeys.addOne: addOne.text,
+            APIKeys.addTwo: addTwo.text,
+            APIKeys.pinCode: pinCode.text,
+            APIKeys.city: city.text,
           };
 
           ApiResponse apiResponse =

@@ -1,9 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:need_flutter_app/res/strings.dart';
+import 'package:need_flutter_app/utils/methods.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:need_flutter_app/utils/textstyles.dart';
 import 'package:need_flutter_app/utils/ui_helper.dart';
@@ -11,6 +14,9 @@ import 'package:need_flutter_app/widget/app_error_widget.dart';
 import 'package:need_flutter_app/widget/custom_appbar.dart';
 import 'package:get/get.dart';
 
+import '../../dialogs/loading_dialog.dart';
+import '../../models/getdahsoboard_model.dart';
+import '../../network/urls.dart';
 import '../../widget/app_primary_button.dart';
 import 'controller/need_in_detail_controller.dart';
 
@@ -21,14 +27,13 @@ class NeedInDetailScreen extends StatelessWidget {
 
   final Set<Marker> _markers = {};
 
-  static const LatLng _position = LatLng(50.4501, 30.5234);
+  double lat1 = 0.0;
+  double long1 = 0.0;
+  CameraPosition? _cameraPosition;
 
-  static const CameraPosition _cameraPosition = CameraPosition(
-    target: LatLng(50.4501, 30.5234),
-    zoom: 13,
-  );
+  final ProductOutputs productOutputs;
 
-  NeedInDetailScreen({Key? key}) : super(key: key);
+  NeedInDetailScreen({Key? key, required this.productOutputs}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +44,21 @@ class NeedInDetailScreen extends StatelessWidget {
       ),
       body: GetX<NeedInDetailController>(
         initState: (state) {
-          _markers.add(const Marker(
-            markerId: MarkerId("latlong"),
+          log("Products :: ${ json.encode(productOutputs)}");
+          lat1 = double.parse(productOutputs.lat??"0.0");
+          long1 = double.parse(productOutputs.long??"0.0");
+          long1 = double.parse(productOutputs.long??"0.0");
+          _cameraPosition = CameraPosition(
+            target: LatLng(lat1,long1),
+            zoom: 13,
+          );
+          LatLng _position = LatLng(lat1,long1);
+          _markers.add( Marker(
+            markerId: MarkerId(productOutputs.title??"Title"),
             position: _position,
-            infoWindow: InfoWindow(
-              title: 'Really cool place',
-              snippet: '5 Star Rating',
+            infoWindow:  InfoWindow(
+              title: productOutputs.title,
+              snippet: productOutputs.decription,
             ),
             icon: BitmapDescriptor.defaultMarker,
           ));
@@ -77,7 +91,7 @@ class NeedInDetailScreen extends StatelessWidget {
                 autoPlayAnimationDuration: const Duration(milliseconds: 800),
                 autoPlayCurve: Curves.easeInQuad,
               ),
-              items: [1, 2, 3].map((i) {
+              items: imageList(productOutputs.photoOne??"",productOutputs.photoTwo??"",productOutputs.thotThree??"").map((i) {
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
@@ -91,9 +105,10 @@ class NeedInDetailScreen extends StatelessWidget {
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(20))),
                         child: Center(
-                          child: Text(
-                            'text $i',
-                            style: const TextStyle(fontSize: 16.0),
+                          child: CachedNetworkImage(
+                            imageUrl: i,
+                            placeholder: (context, url) => const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => const Icon(Icons.error, size: 50,),
                           ),
                         ));
                   },
@@ -108,22 +123,24 @@ class NeedInDetailScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Long Title",
+                    productOutputs.title??"",
                     style: TextStyles.title,
                   ),
                   C10(),
                   Text(
-                    "Long Title",
+                    productOutputs.decription??"",
                     style: TextStyles.greyText,
                   ),
                   C10(),
                   Row(
-                    children: const [Text("Date"), Spacer(), Text("City")],
+                    children: [Text(productOutputs.publishDate??""), const Spacer(), Text(productOutputs.city??"")],
                   ),
                   C15(),
-                  const Text("Full Address"),
+                  Text(productOutputs.addOne??""),
                   C15(),
-                  const Text("Pin Code"),
+                  Text(productOutputs.addTwo??""),
+                  C15(),
+                  Text(productOutputs.pincode??""),
                   C15(),
                   SizedBox(
                     height: 300,
@@ -135,7 +152,7 @@ class NeedInDetailScreen extends StatelessWidget {
                       ),
                       child: GoogleMap(
                         mapType: MapType.hybrid,
-                        initialCameraPosition: _cameraPosition,
+                        initialCameraPosition: _cameraPosition!,
                         onMapCreated: (GoogleMapController controller) {
                           _controller.complete(controller);
                         },
@@ -173,4 +190,19 @@ class NeedInDetailScreen extends StatelessWidget {
       ],
     );
   }
+
+
+  List<String> imageList(String linkOne, String linkTwo, String linkThree){
+
+    List<String> images = [];
+
+    if(linkOne.isNotEmpty) images.add(AppUrl.awsImageLink+linkOne);
+    if(linkTwo.isNotEmpty) images.add(AppUrl.awsImageLink+linkTwo);
+    if(linkThree.isNotEmpty) images.add(AppUrl.awsImageLink+linkThree);
+
+    log("Images :: $images");
+    return images;
+
+  }
+
 }

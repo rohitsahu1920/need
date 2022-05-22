@@ -60,6 +60,10 @@ class ProductOutputs {
   String? userid;
   String? email;
   String? id;
+  String? addOne;
+  String? addTwo;
+  String? pincode;
+  String? city;
 
   ProductOutputs(
       {this.productId,
@@ -81,7 +85,12 @@ class ProductOutputs {
         this.report,
         this.userid,
         this.email,
-        this.id});
+        this.id,
+        this.addOne,
+        this.addTwo,
+        this.pincode,
+        this.city,
+      });
 
   ProductOutputs.fromJson(Map<String, dynamic> json) {
     productId = json['product_id'] == null ? "" : json['product_id'] as String;
@@ -104,6 +113,10 @@ class ProductOutputs {
     userid = json['userid'] == null ? "" : json['userid'] as String;
     email = json['email'] == null ? "" : json['email'] as String;
     id = json['id'] == null ? "" : json['id'] as String;
+    addOne = json['add_one'] == null ? "" : json['add_one'] as String;
+    addTwo = json['add_two'] == null ? "" : json['add_two'] as String;
+    pincode = json['pincode'] == null ? "" : json['pincode'] as String;
+    city = json['city'] == null ? "" : json['city'] as String;
   }
 
   Map<String, dynamic> toJson() {
@@ -128,6 +141,10 @@ class ProductOutputs {
     data['userid'] = this.userid;
     data['email'] = this.email;
     data['id'] = this.id;
+    data['add_one'] = this.addOne;
+    data['add_two'] = this.addTwo;
+    data['pincode'] = this.pincode;
+    data['city'] = this.city;
     return data;
   }
 }

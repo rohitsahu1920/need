@@ -14,7 +14,8 @@ import 'package:need_flutter_app/utils/shared_pref_manager/sp_keys.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'access_screen/access_screen.dart';
 import 'dashboard_screen/controller/dashboard_controller.dart';
 import 'intro_screens/intro_screen.dart';
@@ -38,8 +39,9 @@ class _SplashScreenState extends State<SplashScreen>
     _startApp();
   }
 
-  _startApp() {
+  _startApp() async{
     //if (App.instance.devMode) return _checkForPermissions();
+    //final remoteConfig = FirebaseRemoteConfig.instance;
     return Timer(splashDuration, () async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       if (preferences.getBool(SPKeys.isFirst.value) ?? true) {
@@ -59,7 +61,6 @@ class _SplashScreenState extends State<SplashScreen>
     //Get.put(DashBoardController());
 
     //set language
-
     var savedLanguage = preferences.getString(SPKeys.selectedLanguage.value);
     if (savedLanguage != null) {
       var l = supportedLanguages.firstWhere((e) => e.title == savedLanguage);

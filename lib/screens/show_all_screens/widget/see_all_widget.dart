@@ -5,8 +5,13 @@ import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:need_flutter_app/utils/textstyles.dart';
 import 'package:need_flutter_app/utils/ui_helper.dart';
 
+import '../../../models/getdahsoboard_model.dart';
+import '../../../network/urls.dart';
+
 class SeeAllWidget extends StatelessWidget {
-  const SeeAllWidget({Key? key}) : super(key: key);
+  final ProductOutputs productOutputs;
+
+  const SeeAllWidget({Key? key, required this.productOutputs}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +21,20 @@ class SeeAllWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-              padding: EdgeInsets.all(Sizes.s10),
-              child: CachedNetworkImage(
-                imageUrl: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80",
-                height: 60,
-                width: 60,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error, size: 50,),
+            padding: EdgeInsets.all(Sizes.s10),
+            child: CachedNetworkImage(
+              imageUrl: returnImage(
+                  productOutputs.photoOne ?? "",
+                  productOutputs.photoTwo ?? "",
+                  productOutputs.thotThree ?? ""),
+              height: 60,
+              width: 60,
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(
+                Icons.error,
+                size: 50,
               ),
+            ),
           ),
           C10(),
           Expanded(
@@ -33,12 +44,12 @@ class SeeAllWidget extends StatelessWidget {
               children: [
                 C10(),
                 Text(
-                  "Title",
+                  productOutputs.title ?? "",
                   style: TextStyles.dialog,
                 ),
                 C5(),
                 Text(
-                  "Description",
+                  productOutputs.decription ?? "",
                   style: TextStyles.greyText,
                 ),
                 C5(),
@@ -48,11 +59,11 @@ class SeeAllWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "data",
+                        productOutputs.category ?? "",
                         style: TextStyles.defaultRegular,
                       ),
                       Text(
-                        "data",
+                        productOutputs.publishDate ?? "",
                         style: TextStyles.defaultRegular,
                       )
                     ],
@@ -64,5 +75,18 @@ class SeeAllWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String returnImage(String linkOne, String linkTwo, String linkThree) {
+    if (linkOne.isNotEmpty) {
+      return AppUrl.awsImageLink + linkOne;
+    }
+    if (linkTwo.isNotEmpty) {
+      return AppUrl.awsImageLink + linkTwo;
+    }
+    if (linkThree.isNotEmpty) {
+      return AppUrl.awsImageLink + linkThree;
+    }
+    return "";
   }
 }

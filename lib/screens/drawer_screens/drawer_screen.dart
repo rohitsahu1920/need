@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:need_flutter_app/res/strings.dart';
@@ -5,6 +6,7 @@ import 'package:need_flutter_app/screens/drawer_screens/about_us_screen.dart';
 import 'package:need_flutter_app/screens/drawer_screens/contact_us_screen.dart';
 import 'package:need_flutter_app/screens/login_and_registration%20_screen/registration_screen.dart';
 
+import '../../network/urls.dart';
 import '../../utils/auth/auth_manager.dart';
 import '../dashboard_screen/controller/dashboard_controller.dart';
 
@@ -25,12 +27,12 @@ class DrawerScreen extends StatelessWidget {
             ),
             accountName: Text("${_authManager.getLoginData()?.firstName} ${_authManager.getLoginData()?.lastName}"),
             accountEmail: Text("${_authManager.getLoginData()?.email}"),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Theme.of(context).platform != TargetPlatform.iOS
-                  ? Colors.blue
-                  : Colors.white,
-              backgroundImage: NetworkImage(_dashboardController.profileLink),
-              //child: Image.network(_dashboardController.profileLink,fit: BoxFit.cover),
+            currentAccountPicture: CachedNetworkImage(
+              imageUrl: _dashboardController.profileLink,
+              height: 60,
+              width: 60,
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error, size: 50,),
             ),
           ),
           ListTile(

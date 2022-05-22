@@ -43,9 +43,9 @@ class SeeAllScreen extends StatelessWidget {
       child: ListView(
         //color: Colors.amber,
         children: [
-          InkWell(
-              onTap: () => Get.to(() => NeedInDetailScreen()), child: SeeAllWidget()),
-          SeeAllWidget(),
+          // InkWell(
+          //     onTap: () => Get.to(() => NeedInDetailScreen()), child: SeeAllWidget()),
+          // SeeAllWidget(),
         ],
       ),
     );
