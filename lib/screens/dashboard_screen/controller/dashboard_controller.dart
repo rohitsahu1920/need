@@ -18,6 +18,25 @@ import '../../../utils/methods.dart';
 
 class DashBoardController extends GetxController with StateMixin{
 
+
+  int _myNeedScreenCount = 0;
+
+  int get getMyNeedScreenCount => _myNeedScreenCount;
+
+  void setMyNeedScreenCount(int? value){
+    _myNeedScreenCount = value!;
+    update();
+  }
+
+  int _dashBoardScreenCount = 0;
+
+  int get getDashBoardScreenCount => _dashBoardScreenCount;
+
+  void setDashBoardScreeCount(int? value){
+    _dashBoardScreenCount = value!;
+    update();
+  }
+
   final AuthManager _authManager = Get.find();
   final DashboardRepository _dashboardRepository = Get.put(DashboardRepository());
 
@@ -50,11 +69,13 @@ class DashBoardController extends GetxController with StateMixin{
      getDashBoardModel =  await _dashboardRepository.getDashboardDetails();
 
      if(getDashBoardModel.status == "1"){
+       setDashBoardScreeCount(getDashBoardModel.productOutputs?.length);
        Get.back();
        log("getDashboardDetails successfully fetched");
        log("${getDashBoardModel.productOutputs?.length}");
        Common.toast("Success");
      }else{
+       setDashBoardScreeCount(0);
        Get.back();
        log("Under else part of getDashboardDetails");
        Common.toast("Something went wrong");
@@ -85,11 +106,13 @@ class DashBoardController extends GetxController with StateMixin{
       myNeedModel = await _dashboardRepository.getMyNeeds(data);
 
       if(myNeedModel.status == "1"){
+        setMyNeedScreenCount(myNeedModel.productOutputs?.length);
         Get.back();
         log("getDashboardDetails successfully fetched");
         log("Length :: ${myNeedModel.productOutputs?.length}");
         Common.toast("Success");
       }else{
+        setMyNeedScreenCount(0);
         Get.back();
         log("Under else part of myNeedModel");
         Common.toast("Something went wrong");

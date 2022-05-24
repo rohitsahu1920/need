@@ -42,30 +42,30 @@ class _MyNeedScreenState extends State<MyNeedScreen> {
       body: Padding(
         padding: EdgeInsets.all(Sizes.s15),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: widget._dashboardController.myNeedModel
-                    .productOutputs !=
-                    null
-                    ? widget._dashboardController.myNeedModel
-                    .productOutputs?.length
-                    : 0,
-                itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                      onTap: () {
-                        Get.to(() => MyNeedInDetailScreen(
-                          productOutputs: widget
-                              ._dashboardController
-                              .myNeedModel.productOutputs![index],
-                        ));
-                      },
-                      child: SeeMyAllWidget(
-                        productOutputs: widget._dashboardController
-                            .myNeedModel.productOutputs![index],
-                      ));
-                }),
+            widget._dashboardController.getMyNeedScreenCount > 0
+                ? ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: widget._dashboardController.myNeedModel
+                        .productOutputs?.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                          onTap: () {
+                            Get.to(() => MyNeedInDetailScreen(
+                                  productOutputs: widget._dashboardController
+                                      .myNeedModel.productOutputs![index],
+                                ));
+                          },
+                          child: SeeMyAllWidget(
+                            productOutputs: widget._dashboardController
+                                .myNeedModel.productOutputs![index],
+                          ));
+                    })
+                : const Align(
+                    alignment: Alignment.center,
+                    child: Text("No Need Found"),
+                  )
           ],
         ),
       ),

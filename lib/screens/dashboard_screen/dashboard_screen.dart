@@ -156,6 +156,36 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                             ))
                       ],
                     ),
+                    widget._dashboardController.getDashBoardScreenCount > 0
+                        ? ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: widget._dashboardController
+                                        .getDashBoardModel.productOutputs !=
+                                    null
+                                ? widget._dashboardController.getDashBoardModel
+                                    .productOutputs?.length
+                                : 0,
+                            itemBuilder: (BuildContext context, int index) {
+                              return InkWell(
+                                  onTap: () {
+                                    Get.to(() => NeedInDetailScreen(
+                                          productOutputs: widget
+                                              ._dashboardController
+                                              .getDashBoardModel
+                                              .productOutputs![index],
+                                        ));
+                                  },
+                                  child: SeeAllWidget(
+                                    productOutputs: widget
+                                        ._dashboardController
+                                        .getDashBoardModel
+                                        .productOutputs![index],
+                                  ));
+                            })
+                        : const Align(
+                            alignment: Alignment.center,
+                            child: Text("No Need Found"),
+                          ),
                     ListView.builder(
                         shrinkWrap: true,
                         itemCount: widget._dashboardController.getDashBoardModel
