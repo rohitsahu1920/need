@@ -81,6 +81,10 @@ class Strings {
   static String get contactUs => 'contactUs'.tr;
   static String get logout => 'logout'.tr;
   static String get deleteAccount => 'deleteAccount'.tr;
+  static String get cancel => 'cancel'.tr;
+  static String get done => 'done'.tr;
+  static String get remark => 'remark'.tr;
+  static String get areYouSure => 'areYouSure'.tr;
 
   //Validation
   static String get addNeedTitleValidation => 'addNeedTitleValidation'.tr;

@@ -4,7 +4,7 @@ import 'package:need_flutter_app/utils/sizes.dart';
 
 class SecondaryTextButton extends StatelessWidget {
   final String? text;
-  final Function? onTap;
+  final Function()? onTap;
   final double? fontSize;
   final EdgeInsets? padding;
 
@@ -28,8 +28,8 @@ class SecondaryTextButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(
             Sizes.s8,
           ),
-          side: BorderSide(
-            color: AppColors.black,
+          side: const BorderSide(
+            color: Colors.amber,
           ),
         )),
       ),
@@ -44,7 +44,7 @@ class SecondaryTextButton extends StatelessWidget {
           ),
         ),
       ),
-      onPressed: onTap!(),
+      onPressed: onTap!,
     );
   }
 }

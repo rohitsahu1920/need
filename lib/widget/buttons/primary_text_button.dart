@@ -3,7 +3,7 @@ import 'package:need_flutter_app/utils/sizes.dart';
 
 class PrimaryTextButton extends StatelessWidget {
   final String text;
-  final Function onTap;
+  final Function() onTap;
   final double fontSize;
   final Color bgColor;
   final Color borderColor;
@@ -47,7 +47,7 @@ class PrimaryTextButton extends StatelessWidget {
           ),
         ),
       ),
-      onPressed: onTap(),
+      onPressed: onTap,
     );
   }
 }

@@ -14,7 +14,9 @@ import 'package:need_flutter_app/widget/app_error_widget.dart';
 import 'package:need_flutter_app/widget/custom_appbar.dart';
 import 'package:get/get.dart';
 
+import '../../dialogs/error_dialog.dart';
 import '../../dialogs/loading_dialog.dart';
+import '../../dialogs/reject_visit_dialog.dart';
 import '../../models/getdahsoboard_model.dart';
 import '../../network/urls.dart';
 import '../../widget/app_primary_button.dart';
@@ -27,13 +29,14 @@ class NeedInDetailScreen extends StatelessWidget {
 
   final Set<Marker> _markers = {};
 
-  double lat1 = 0.0;
-  double long1 = 0.0;
-  CameraPosition? _cameraPosition;
+  static double lat1 = 0.0;
+  static double long1 = 0.0;
+  static CameraPosition? _cameraPosition;
 
   final ProductOutputs productOutputs;
 
-  NeedInDetailScreen({Key? key, required this.productOutputs}) : super(key: key);
+  NeedInDetailScreen({Key? key, required this.productOutputs})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,19 +47,19 @@ class NeedInDetailScreen extends StatelessWidget {
       ),
       body: GetX<NeedInDetailController>(
         initState: (state) {
-          log("Products :: ${ json.encode(productOutputs)}");
-          lat1 = double.parse(productOutputs.lat??"0.0");
-          long1 = double.parse(productOutputs.long??"0.0");
-          long1 = double.parse(productOutputs.long??"0.0");
+          log("Products :: ${json.encode(productOutputs)}");
+          lat1 = double.parse(productOutputs.lat ?? "0.0");
+          long1 = double.parse(productOutputs.long ?? "0.0");
+          long1 = double.parse(productOutputs.long ?? "0.0");
           _cameraPosition = CameraPosition(
-            target: LatLng(lat1,long1),
+            target: LatLng(lat1, long1),
             zoom: 13,
           );
-          LatLng _position = LatLng(lat1,long1);
-          _markers.add( Marker(
-            markerId: MarkerId(productOutputs.title??"Title"),
+          LatLng _position = LatLng(lat1, long1);
+          _markers.add(Marker(
+            markerId: MarkerId(productOutputs.title ?? "Title"),
             position: _position,
-            infoWindow:  InfoWindow(
+            infoWindow: InfoWindow(
               title: productOutputs.title,
               snippet: productOutputs.decription,
             ),
@@ -91,7 +94,11 @@ class NeedInDetailScreen extends StatelessWidget {
                 autoPlayAnimationDuration: const Duration(milliseconds: 800),
                 autoPlayCurve: Curves.easeInQuad,
               ),
-              items: imageList(productOutputs.photoOne??"",productOutputs.photoTwo??"",productOutputs.thotThree??"").map((i) {
+              items: imageList(
+                      productOutputs.photoOne ?? "",
+                      productOutputs.photoTwo ?? "",
+                      productOutputs.thotThree ?? "")
+                  .map((i) {
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
@@ -107,8 +114,12 @@ class NeedInDetailScreen extends StatelessWidget {
                         child: Center(
                           child: CachedNetworkImage(
                             imageUrl: i,
-                            placeholder: (context, url) => const CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => const Icon(Icons.error, size: 50,),
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => const Icon(
+                              Icons.error,
+                              size: 50,
+                            ),
                           ),
                         ));
                   },
@@ -123,24 +134,28 @@ class NeedInDetailScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productOutputs.title??"",
+                    productOutputs.title ?? "",
                     style: TextStyles.title,
                   ),
                   C10(),
                   Text(
-                    productOutputs.decription??"",
+                    productOutputs.decription ?? "",
                     style: TextStyles.greyText,
                   ),
                   C10(),
                   Row(
-                    children: [Text(productOutputs.publishDate??""), const Spacer(), Text(productOutputs.city??"")],
+                    children: [
+                      Text(productOutputs.publishDate ?? ""),
+                      const Spacer(),
+                      Text(productOutputs.city ?? "")
+                    ],
                   ),
                   C15(),
-                  Text(productOutputs.addOne??""),
+                  Text(productOutputs.addOne ?? ""),
                   C15(),
-                  Text(productOutputs.addTwo??""),
+                  Text(productOutputs.addTwo ?? ""),
                   C15(),
-                  Text(productOutputs.pincode??""),
+                  Text(productOutputs.pincode ?? ""),
                   C15(),
                   SizedBox(
                     height: 300,
@@ -168,17 +183,25 @@ class NeedInDetailScreen extends StatelessWidget {
                       onPressed: () {},
                     ),
                   ),
-                  C10(),
+                  const C20(color: Colors.white),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      GestureDetector(
+                      GestureDetector (
                         child: Text(
                           Strings.reportNeed,
                         ),
-                        onTap: () {
-                          //Get.to(() => RegistrationScreen());
-                        },
+                        onTap: () => Get.dialog(
+                           RejectVisitDialog(
+                            onDone: (value) {
+                              log("Done ::");
+                            },
+                            onCancel: () {
+                              Get.back();
+                            },
+                          ),
+                          barrierDismissible: true,
+                        ),
                       ),
                     ],
                   ),
@@ -191,18 +214,14 @@ class NeedInDetailScreen extends StatelessWidget {
     );
   }
 
-
-  List<String> imageList(String linkOne, String linkTwo, String linkThree){
-
+  List<String> imageList(String linkOne, String linkTwo, String linkThree) {
     List<String> images = [];
 
-    if(linkOne.isNotEmpty) images.add(AppUrl.awsImageLink+linkOne);
-    if(linkTwo.isNotEmpty) images.add(AppUrl.awsImageLink+linkTwo);
-    if(linkThree.isNotEmpty) images.add(AppUrl.awsImageLink+linkThree);
+    if (linkOne.isNotEmpty) images.add(AppUrl.awsImageLink + linkOne);
+    if (linkTwo.isNotEmpty) images.add(AppUrl.awsImageLink + linkTwo);
+    if (linkThree.isNotEmpty) images.add(AppUrl.awsImageLink + linkThree);
 
     log("Images :: $images");
     return images;
-
   }
-
 }

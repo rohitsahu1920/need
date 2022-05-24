@@ -12,4 +12,5 @@ class AppUrl {
   static String get uploadImages => "product/uploadFiles";
   static String get addNeed => "product/addProduct";
   static String get getDashboard => "product/getDashboard";
+  static String get getProfileData => "product/getprofileData";
 }

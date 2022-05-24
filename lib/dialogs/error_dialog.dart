@@ -10,15 +10,11 @@ import 'package:need_flutter_app/widget/buttons/secondary_text_button.dart';
 
 class ErrorDialog extends StatelessWidget {
   final String errorMessage;
-  final bool restartApp;
-  final bool isShowRestart;
 
-  const ErrorDialog(
-      {Key? key,
-      required this.errorMessage,
-      this.restartApp = false,
-      this.isShowRestart = true})
-      : super(key: key);
+  const ErrorDialog({
+    Key? key,
+    required this.errorMessage,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,23 +48,17 @@ class ErrorDialog extends StatelessWidget {
                       style: TextStyles.defaultRegular,
                     ),
                   ),
-                  isShowRestart
-                      ? Column(
-                          children: [
-                            C10(),
-                            SecondaryTextButton(
-                              text: Strings.retry,
-                              onTap: () {
-                                if (restartApp) {
-                                  Get.off(() => const SplashScreen());
-                                } else {
-                                  Get.back();
-                                }
-                              },
-                            ),
-                          ],
-                        )
-                      : const SizedBox(),
+                  Column(
+                    children: [
+                      C10(),
+                      SecondaryTextButton(
+                        text: Strings.retry,
+                        onTap: () {
+
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

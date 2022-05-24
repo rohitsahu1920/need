@@ -9,6 +9,7 @@ import 'package:need_flutter_app/screens/login_and_registration%20_screen/regist
 import '../../network/urls.dart';
 import '../../utils/auth/auth_manager.dart';
 import '../dashboard_screen/controller/dashboard_controller.dart';
+import 'my_need_screen.dart';
 
 class DrawerScreen extends StatelessWidget {
   DrawerScreen({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ class DrawerScreen extends StatelessWidget {
               trailing: const Icon(Icons.arrow_forward_ios_sharp),
               onTap: (){
                 Get.back();
-                Get.to(() => RegistrationScreen());
+                Get.to(() => MyNeedScreen());
               }
           ),
           ListTile(

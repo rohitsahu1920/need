@@ -84,5 +84,9 @@ class EnglishLanguage {
     "pinCodeValidation":"Enter valid PinCode.",
     "cityValidation":"Enter valid City.",
     "myNeeds":"My Needs.",
+    "cancel":"Cancel",
+    "done":"Done",
+    "areYouSure":"Are You sure you want to report this Need",
+    "remark":"Please add your Remark",
   };
 }

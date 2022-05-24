@@ -20,7 +20,6 @@ class InternetConnectivityWrapper extends StatelessWidget {
       disableInteraction: true,
       offlineWidget: ErrorDialog(
         errorMessage: Strings.noInternetMsg,
-        isShowRestart: isShowRestart,
       ),
       child: child
     );

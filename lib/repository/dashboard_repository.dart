@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:need_flutter_app/models/getdahsoboard_model.dart';
+import 'package:need_flutter_app/models/my_need_model.dart';
 
 import '../models/api_response.dart';
 import '../network/api_client.dart';
@@ -35,5 +36,13 @@ class DashboardRepository {
 
   }
 
+  Future<MyNeedModel> getMyNeeds(Map data) async{
 
+    final url = AppUrl.urlBase() + AppUrl.getProfileData;
+
+    Map<String,dynamic> response = await _apiClient.post(url,data: data);
+
+    return MyNeedModel.fromJson(response);
+
+  }
 }
