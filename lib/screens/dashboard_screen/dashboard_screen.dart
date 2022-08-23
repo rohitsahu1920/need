@@ -30,7 +30,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       await widget._dashboardController.getDashboardDetails();
       setState(() {});
     });

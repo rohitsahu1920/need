@@ -26,7 +26,7 @@ class _MyNeedScreenState extends State<MyNeedScreen> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       await widget._dashboardController.getMyNeeds();
       setState(() {});
     });

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:need_flutter_app/res/strings.dart';
-import 'package:need_flutter_app/screens/splash_screen.dart';
 import 'package:need_flutter_app/utils/assets.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
 import 'package:need_flutter_app/utils/textstyles.dart';
