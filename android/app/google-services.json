@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "979168727648",
+    "project_id": "need-b024c",
+    "storage_bucket": "need-b024c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979168727648:android:ee6b89d2b1ab9e7a3ce905",
+        "android_client_info": {
+          "package_name": "com.example.need_flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979168727648-5ugr9bn8b9b8cd2chbbfn7chi4u0b5sk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANlS4ojcZwiDXGiN5H0v8Tk9n1PqHw3hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979168727648-5ugr9bn8b9b8cd2chbbfn7chi4u0b5sk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

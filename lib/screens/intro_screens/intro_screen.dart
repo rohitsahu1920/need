@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:need_flutter_app/res/app_colors.dart';
 import 'package:need_flutter_app/res/strings.dart';
-import 'package:need_flutter_app/screens/access_screen/access_screen.dart';
+import 'package:need_flutter_app/screens/dashboard_screen/dashboard_screen.dart';
 import 'package:need_flutter_app/screens/intro_screens/widgets/slider_dots.dart';
 import 'package:need_flutter_app/screens/intro_screens/widgets/slider_item_widget.dart';
 import 'package:need_flutter_app/utils/shared_pref_manager/sp_keys.dart';
@@ -118,7 +118,7 @@ class _IntroScreenState extends State<IntroScreen> {
               child: AppPrimaryButton(
                 text: Strings.getStarted,
                 onPressed: () {
-                  Get.offAll(() => AccessScreen());
+                  Get.offAll(() => DashBoardScreen());
                 },
               ),
             ),

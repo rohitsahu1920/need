@@ -5,9 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:need_flutter_app/app.dart';
 import 'package:need_flutter_app/dialogs/loading_dialog.dart';
 import 'package:need_flutter_app/models/api_response.dart';
-import 'package:need_flutter_app/models/login_response.dart';
 import 'package:need_flutter_app/repository/login_repository.dart';
 import 'package:need_flutter_app/res/api_keys.dart';
 import 'package:need_flutter_app/res/strings.dart';
@@ -17,8 +17,6 @@ import 'package:need_flutter_app/utils/auth/auth_manager.dart';
 import 'package:need_flutter_app/utils/common.dart';
 import 'package:need_flutter_app/utils/methods.dart';
 import 'package:unique_identifier/unique_identifier.dart';
-
-import '../../../app.dart';
 
 class LoginController extends GetxController {
   LoginRepository _loginRepository = Get.put(LoginRepository());

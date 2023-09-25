@@ -1,9 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:need_flutter_app/res/app_colors.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:need_flutter_app/res/strings.dart';
-import 'package:need_flutter_app/screens/add_needs_screens/add_need_screen.dart';
 import 'package:need_flutter_app/screens/drawer_screens/drawer_screen.dart';
 import 'package:need_flutter_app/screens/show_all_screens/see_all_screen.dart';
 import 'package:need_flutter_app/utils/sizes.dart';
@@ -12,8 +11,46 @@ import 'package:need_flutter_app/widget/appbar_without_back.dart';
 
 ///Created by Rohit Sahu on 29-09-2021
 
-class DashBoardScreen extends StatelessWidget {
-  const DashBoardScreen({Key? key}) : super(key: key);
+class DashBoardScreen extends StatefulWidget {
+  const DashBoardScreen({super.key});
+
+  @override
+  State<DashBoardScreen> createState() => _DashBoardScreenState();
+}
+
+class _DashBoardScreenState extends State<DashBoardScreen> {
+  BannerAd? _bannerAd;
+  bool _isLoaded = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadAd();
+  }
+
+  void loadAd() {
+    _bannerAd = BannerAd(
+      adUnitId: "ca-app-pub-3940256099942544/6300978111",
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+          setState(() {
+            _isLoaded = true;
+          });
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          debugPrint('BannerAd failed to load: $err');
+          // Dispose the ad here to free resources.
+          ad.dispose();
+        },
+      ),
+    )..load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,20 +78,20 @@ class DashBoardScreen extends StatelessWidget {
         ),
         body: _body(),
         drawer: DrawerScreen(),
-        floatingActionButton: new FloatingActionButton.extended(
-            elevation: 0.0,
-            icon: const Icon(
-              Icons.add,
-              color: Colors.black,
-            ),
-            backgroundColor: Colors.amber,
-            label: Text(
-              Strings.addNeed,
-              style: TextStyle(fontSize: 12.0, color: Colors.black),
-            ),
-            onPressed: () {
-              Get.to(() => AddNeedScreen());
-            }),
+        // floatingActionButton: new FloatingActionButton.extended(
+        //     elevation: 0.0,
+        //     icon: const Icon(
+        //       Icons.add,
+        //       color: Colors.black,
+        //     ),
+        //     backgroundColor: Colors.amber,
+        //     label: Text(
+        //       Strings.addNeed,
+        //       style: TextStyle(fontSize: 12.0, color: Colors.black),
+        //     ),
+        //     onPressed: () {
+        //       Get.to(() => AddNeedScreen());
+        //     }),
       ),
     );
   }
@@ -119,20 +156,36 @@ class DashBoardScreen extends StatelessWidget {
                               style: TextStyles.defaultRegular,
                             ))
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
             ],
           ),
         ),
+        // Padding(
+        //   padding: EdgeInsets.only(bottom: Sizes.s15),
+        //   child: Text(
+        //     Strings.poweredBy,
+        //     style: TextStyle(
+        //         fontWeight: FontWeight.bold, color: AppColors.greyText),
+        //   ),
+        //
+        // ),
         Padding(
           padding: EdgeInsets.only(bottom: Sizes.s15),
-          child: Text(
-            Strings.poweredBy,
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: AppColors.greyText),
-          ),
+          child: _bannerAd != null
+              ? Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SafeArea(
+                    child: SizedBox(
+                      width: _bannerAd!.size.width.toDouble(),
+                      height: _bannerAd!.size.height.toDouble(),
+                      child: AdWidget(ad: _bannerAd!),
+                    ),
+                  ),
+                )
+              : Container(),
         ),
       ],
     );

@@ -14,6 +14,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'access_screen/access_screen.dart';
+import 'dashboard_screen/dashboard_screen.dart';
 import 'intro_screens/intro_screen.dart';
 
 ///Created by Rohit Sahu on 17-09-2021
@@ -30,17 +31,17 @@ class _SplashScreenState extends State<SplashScreen> with AfterLayoutMixin<Splas
   @override
   Future<void> afterFirstLayout(BuildContext context) async {
     await _setupDependency();
-    _startApp();
+    await _startApp();
   }
 
-  _startApp() {
-    //if (App.instance.devMode) return _checkForPermissions();
+  Future<Timer> _startApp() async{
+      //if (App.instance.devMode) return _checkForPermissions();
     return Timer(splashDuration, () async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       if (preferences.getBool(SPKeys.isFirst.value) ?? true) {
         Get.offAll(() => IntroScreen());
       } else {
-        Get.offAll(() => LoginScreen());
+        Get.offAll(() => DashBoardScreen());
         //_checkForPermissions();
       }
     });
